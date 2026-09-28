@@ -1,0 +1,14 @@
+---
+const { overlay = false } = Astro.props;
+---
+
+<header class:list={['site-header', { 'header-overlay': overlay }]}>
+  <a class="wordmark" href="/" aria-label="Home">
+    <img class="site-logo" src="/images/jeff-logo.png" alt="" width="44" height="44" />
+    Jeff Li
+  </a>
+  <nav aria-label="Main navigation">
+    <a href="/projects/">Work</a>
+    <a href="/#about">About</a>
+  </nav>
+</header>

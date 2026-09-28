@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getPublishedProjects } from '../lib/projects';
+const projects = await getPublishedProjects();
+const featured = projects.filter(({ data }) => data.featured);
+---
+
+<Base>
+  <div id="top"></div>
+  <Header />
+  <main id="main" class="home-compact">
+    <Hero />
+    <section class="about section-shell" id="about">
+      <div class="about-copy">
+        <p>
+          I care about doing things well, and I tend to keep going until they
+          work. I like working with people who take the work seriously and leave
+          room for a laugh.
+        </p>
+        <p>
+          Away from the screen, you’ll find me playing soccer, wondering about
+          the <a href="https://digital-observatory.vercel.app/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; text-underline-offset: 4px;"><em>universe</em></a>, or taking things slowly in Stardew Valley. My music can
+          go from traditional Chinese melodies to hip-hop pretty quickly.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">A little about me</p>
+        <h2>
+          Feet on the ground.
+          <br />
+          <em>Eyes on the <a href="https://zenodo.org/records/17355044" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; text-underline-offset: 4px;">stars</a>.</em>
+        </h2>
+      </div>
+    </section>
+    <section class="selected section-shell" id="selected-work">
+      <div class="section-intro">
+        <h2>What I’ve been working on.</h2>
+      </div>
+      <div class="hillside-path" aria-hidden="true"></div>
+      <div class="project-trail">
+        {featured.map((project, index) => (
+          <ProjectCard project={project} index={index} />
+        ))}
+      </div>
+      {featured.length === 0 && (
+        <p class="empty-state">
+          New work is taking shape. Come back for a look soon.
+        </p>
+      )}
+    </section>
+
+  </main>
+  <Footer />
+</Base>

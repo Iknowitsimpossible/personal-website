@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  project: CollectionEntry<'projects'>;
+  eager?: boolean;
+}
+const { project, eager = false } = Astro.props;
+const { data } = project;
+---
+
+<div
+  class:list={[
+    'project-cover',
+    `cover-${data.theme}`,
+    {
+      'has-image': !!data.cover,
+      'cover-contained': data.cover?.fit === 'contain',
+    },
+  ]}
+>
+  {data.cover ? (
+    <img
+      src={data.cover.src}
+      alt={data.cover.alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding={eager ? 'sync' : 'async'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      width="1200"
+      height="800"
+    />
+  ) : (
+    <div class="type-cover" aria-hidden="true">
+      <span class="cover-kicker">
+        {data.sample ? 'Illustrative concept' : data.category}
+      </span>
+      <span
+        class:list={[
+          'cover-title',
+          { 'cover-title-compact': !!data.coverTitle },
+        ]}
+      >
+        {data.coverTitle ?? data.title}
+        <span class="cover-period">.</span>
+      </span>
+      <span class="cover-bottom">{data.summary}</span>
+      <span class="cover-index">{String(data.order).padStart(2, '0')}</span>
+    </div>
+  )}
+</div>

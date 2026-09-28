@@ -1,0 +1,116 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import { getPublishedProjects } from '../../lib/projects';
+export async function getStaticPaths() {
+  const projects = await getPublishedProjects();
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: {
+      project,
+    },
+  }));
+}
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+---
+
+<Base title={`${data.title} — Jeff Li`} description={data.summary}>
+  <div id="top"></div>
+  <Header />
+  <main id="main" class="project-page section-shell">
+    <a class="back-link" href="/projects/">
+      ← All projects
+    </a>
+    <header class="page-intro">
+      <p class="eyebrow">
+        {data.category} / {data.year}
+      </p>
+      <h1>{data.title}</h1>
+      <p class="project-deck">{data.summary}</p>
+      {data.sample && (
+        <p class="sample-notice">
+          Sample project — an illustrative concept, not a claim of completed
+          work.
+        </p>
+      )}
+    </header>
+    <ProjectCover project={project} eager />
+    <div class="project-story">
+      <aside class="project-facts">
+        <dl>
+          <dt>My role</dt>
+          <dd>{data.role}</dd>
+          <dt>Year</dt>
+          <dd>{data.year}</dd>
+          {data.stack.length > 0 && (
+            <>
+              <dt>Focus</dt>
+              <dd>{data.stack.join(' · ')}</dd>
+            </>
+          )}
+        </dl>
+        {(data.website || data.github) && (
+          <div class="project-outbound">
+            {data.website && (
+              <a
+                class="outline-link"
+                href={data.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {data.websiteLabel ?? 'Visit website'} ↗
+              </a>
+            )}
+            {data.github && (
+              <a
+                class="outline-link"
+                href={data.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub ↗
+              </a>
+            )}
+          </div>
+        )}
+      </aside>
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+    {data.gallery.length > 0 && (
+      <section class="project-gallery" aria-label="Project images">
+        {data.gallery.map((image) => (
+          <figure>
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        ))}
+      </section>
+    )}
+    <section class="archive-invitation">
+      <div>
+        <p class="eyebrow">The collection</p>
+        <h2>There’s more to the story.</h2>
+        <p>Projects, experiments, and things learned along the way.</p>
+      </div>
+      <a class="outline-link" href="/projects/">
+        Open the collection <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+  </main>
+  <Footer />
+</Base>

@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectCover from './ProjectCover.astro';
+interface Props {
+  project: CollectionEntry<'projects'>;
+  index?: number;
+  eager?: boolean;
+  animate?: boolean;
+  showSummary?: boolean;
+}
+const { project, index = 0, eager = false, animate = true, showSummary = true } = Astro.props;
+---
+
+<article
+  class:list={['project-card', { 'project-right': index % 2 === 1 }]}
+  data-reveal={animate ? true : undefined}
+>
+  <a
+    class="project-link"
+    href={`/projects/${project.id}/`}
+    aria-label={`Explore ${project.data.title}${project.data.sample ? ' — sample project' : ''}`}
+  >
+    <ProjectCover project={project} eager={eager} />
+    <div class="project-caption">
+      <div>
+        <div class="project-meta">
+          <span>{project.data.category}</span>
+          <span>
+            {project.data.sample ? 'Sample project' : project.data.year}
+          </span>
+        </div>
+        <h3>{project.data.title}</h3>
+        {showSummary && <p>{project.data.summary}</p>}
+      </div>
+      <span class="project-arrow" aria-hidden="true">
+        ↗
+      </span>
+    </div>
+  </a>
+</article>

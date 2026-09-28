@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getPublishedProjects } from '../../lib/projects';
+const projects = await getPublishedProjects();
+---
+
+<Base
+  title="Projects and Experiences — Jeff Li"
+  preloadImage={projects[0]?.data.cover?.src}
+  description="A growing collection of projects, experiments, and lessons learned."
+>
+  <div id="top"></div>
+  <Header />
+  <main id="main" class="collection-page section-shell">
+    <a class="back-link" href="/">
+      ← Back to the hillside
+    </a>
+    <header class="page-intro">
+      <h1>Projects and Experiences</h1>
+    </header>
+    <div class="collection-grid">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} eager={index === 0} animate={false} showSummary={false} />
+      ))}
+    </div>
+    {projects.length === 0 && (
+      <p class="empty-state">
+        The collection is still growing. Check back soon.
+      </p>
+    )}
+  </main>
+  <Footer />
+</Base>
