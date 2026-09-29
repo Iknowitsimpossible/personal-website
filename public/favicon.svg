@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#e9eddc"/><circle cx="44" cy="20" r="7" fill="#dcab60"/><path d="M0 45Q19 21 41 39T64 38V64H0Z" fill="#536b48"/><path d="M0 53Q29 33 64 52V64H0Z" fill="#283e34"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Jeff Li — JL and a star</title>
+  <rect width="64" height="64" rx="17" fill="#253c32"/>
+  <path d="M17 23h12v21c0 7-4 11-10 11-5 0-9-3-10-8" fill="none" stroke="#f3f2e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 25v27h15" fill="none" stroke="#f3f2e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m48 6 2.8 7.2L58 16l-7.2 2.8L48 26l-2.8-7.2L38 16l7.2-2.8Z" fill="#dfb96c"/>
+</svg>
