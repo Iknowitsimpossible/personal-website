@@ -3,10 +3,6 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Footer from '../components/Footer.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getPublishedProjects } from '../lib/projects';
-const projects = await getPublishedProjects();
-const featured = projects.filter(({ data }) => data.featured);
 ---
 
 <Base>
@@ -36,22 +32,7 @@ const featured = projects.filter(({ data }) => data.featured);
         </h2>
       </div>
     </section>
-    <section class="selected section-shell" id="selected-work">
-      <div class="section-intro">
-        <h2>What I’ve been working on.</h2>
-      </div>
-      <div class="hillside-path" aria-hidden="true"></div>
-      <div class="project-trail">
-        {featured.map((project, index) => (
-          <ProjectCard project={project} index={index} />
-        ))}
-      </div>
-      {featured.length === 0 && (
-        <p class="empty-state">
-          New work is taking shape. Come back for a look soon.
-        </p>
-      )}
-    </section>
+
 
   </main>
   <Footer />
