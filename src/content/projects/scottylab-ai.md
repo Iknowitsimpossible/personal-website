@@ -16,14 +16,10 @@ order: 1
 draft: false
 sample: false
 theme: forest
-website: https://scottylabs.org/projects
-websiteLabel: Explore ScottyLabs projects
 ---
 
 ## What the team does
 
-ScottyLabs AI connects AI assistants with CMU campus data and services, including dining, locations, and transit. I’m part of the MCP team, which makes this information available as tools assistants can use.
-
-## What I’m learning
+[ScottyLabs](https://scottylabs.org/projects) AI connects AI assistants with CMU campus data and services, including dining, locations, and transit. I’m part of the MCP team, which makes this information available as tools assistants can use.
 
 I’m learning backend development, API integration, testing, and how to build software with a team. This work is also helping me understand how AI agents use external tools and data.
