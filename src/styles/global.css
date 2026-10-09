@@ -1118,3 +1118,11 @@ html[data-motion='off'] .has-image img {
     opacity: .55;
   }
 }
+
+/* Keep project stories concise and easy to scan. */
+.project-story.project-story-compact {
+  display: block;
+  max-width: 680px;
+  margin: 56px auto 0;
+}
+.project-story-compact .project-outbound { margin-top: 28px; }

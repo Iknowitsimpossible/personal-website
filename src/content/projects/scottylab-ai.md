@@ -20,10 +20,10 @@ website: https://scottylabs.org/projects
 websiteLabel: Explore ScottyLabs projects
 ---
 
-## Connecting AI with campus services
+## What the team does
 
-I’m a member of ScottyLabs AI at Carnegie Mellon University, working with the MCP team to connect AI applications with campus data and services. Our project exposes information such as dining options, campus locations, and transit updates as tools that AI assistants can use.
+ScottyLabs AI connects AI assistants with CMU campus data and services, including dining, locations, and transit. I’m part of the MCP team, which makes this information available as tools assistants can use.
 
-## Learning through collaboration
+## What I’m learning
 
-Through this work, I’m developing skills in backend engineering, API integration, testing, and collaborative software development. I’m also exploring agent workflows, memory and retrieval, and evaluation through related projects such as Bark, CMU’s campus assistant. My goal is to apply what I learn to personal AI projects that use external tools and data to solve practical problems.
+I’m learning backend development, API integration, testing, and how to build software with a team. This work is also helping me understand how AI agents use external tools and data.

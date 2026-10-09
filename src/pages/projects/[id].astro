@@ -43,20 +43,10 @@ const { data } = project;
       )}
     </header>
     <ProjectCover project={project} eager />
-    <div class="project-story">
-      <aside class="project-facts">
-        <dl>
-          <dt>My role</dt>
-          <dd>{data.role}</dd>
-          <dt>Year</dt>
-          <dd>{data.year}</dd>
-          {data.stack.length > 0 && (
-            <>
-              <dt>Focus</dt>
-              <dd>{data.stack.join(' · ')}</dd>
-            </>
-          )}
-        </dl>
+    <div class="project-story project-story-compact">
+      <article class="prose">
+        <Content />
+      </article>
         {(data.website || data.github) && (
           <div class="project-outbound">
             {data.website && (
@@ -81,10 +71,6 @@ const { data } = project;
             )}
           </div>
         )}
-      </aside>
-      <article class="prose">
-        <Content />
-      </article>
     </div>
     {data.gallery.length > 0 && (
       <section class="project-gallery" aria-label="Project images">
