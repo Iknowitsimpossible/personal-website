@@ -6,12 +6,14 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Base>
+  <div class="home-frame">
   <div id="top"></div>
   <Header />
   <main id="main" class="home-compact">
     <Hero />
     <section class="about section-shell" id="about">
       <div class="about-copy">
+        <p class="eyebrow">A little about me</p>
         <p>
           I care about doing things well, and I tend to keep going until they
           work. I like working with people who take the work seriously and leave
@@ -23,8 +25,7 @@ import Footer from '../components/Footer.astro';
           go from traditional Chinese melodies to hip-hop pretty quickly.
         </p>
       </div>
-      <div>
-        <p class="eyebrow">A little about me</p>
+      <div class="about-motto">
         <h2>
           Feet on the ground.
           <br />
@@ -36,4 +37,5 @@ import Footer from '../components/Footer.astro';
 
   </main>
   <Footer />
+  </div>
 </Base>

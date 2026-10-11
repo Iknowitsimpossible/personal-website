@@ -1078,47 +1078,6 @@ html[data-motion='off'] .has-image img {
 .site-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 @media (max-width: 380px) { .site-logo { width: 36px; height: 36px; } }
 
-/* Quiet evening light and orbital details for the text-led homepage. */
-.home-compact {
-  background:
-    radial-gradient(ellipse at 96% 8%, #d2dfd5a6, transparent 34%),
-    radial-gradient(ellipse at 68% 24%, #f2ddb766, transparent 32%),
-    linear-gradient(180deg, var(--paper), #edf0e5 48%, var(--paper));
-}
-.home-compact .hero-compact,
-.home-compact .about,
-.home-compact .selected {
-  background: transparent;
-}
-.home-compact .hero-compact::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  width: 480px;
-  height: 480px;
-  right: -170px;
-  top: -80px;
-  border: 1px solid #6c877821;
-  border-radius: 50%;
-  box-shadow: 0 0 0 45px #73866b09, 0 0 0 100px #73866b06;
-  background:
-    radial-gradient(circle at 28% 28%, #b69a5680 0 2px, transparent 3px),
-    radial-gradient(circle at 35% 67%, #56765d60 0 1.5px, transparent 2.5px),
-    radial-gradient(circle at 12% 50%, #b69a5660 0 1px, transparent 2px);
-}
-.home-compact .about {
-  position: relative;
-  border-block: 1px solid #73866b20;
-  background: linear-gradient(110deg, #edf0e54d, #dce6d966 75%, #e8dfc929);
-}
-@media (max-width: 760px) {
-  .home-compact .hero-compact::before {
-    right: -330px;
-    opacity: .55;
-  }
-}
-
 /* Keep project stories concise and easy to scan. */
 .project-story.project-story-compact {
   display: block;
@@ -1126,3 +1085,47 @@ html[data-motion='off'] .has-image img {
   margin: 56px auto 0;
 }
 .project-story-compact .project-outbound { margin-top: 28px; }
+
+/* A simple reading column for the personal homepage. */
+.home-frame { background: var(--paper); }
+.home-frame .site-header,
+.home-frame .site-footer,
+.home-frame .home-compact {
+  max-width: 820px;
+  margin-inline: auto;
+}
+.home-frame .site-header { padding: 28px; }
+.home-frame .hero.hero-compact { padding: 48px 28px 36px; }
+.home-frame .hero-compact::before,
+.home-frame .hero-compact::after { display: none; }
+.home-frame .intro-text,
+.home-frame .contact-sentences { max-width: 680px; }
+.home-frame .home-compact .about {
+  display: block;
+  padding: 24px 28px 56px;
+  background: transparent;
+}
+.home-frame .about-copy { max-width: none; }
+.home-frame .about-copy .eyebrow {
+  font-size: .68rem;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.home-frame .about-motto { margin-top: 28px; }
+.home-frame .about-motto h2 {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  letter-spacing: -.015em;
+}
+.home-frame .site-footer {
+  padding: 24px 28px;
+  border-top: 1px solid var(--line);
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .home-frame .site-header { padding: 24px; gap: 16px; }
+  .home-frame .site-header nav { gap: 18px; }
+  .home-frame .hero.hero-compact { padding: 28px 24px 28px; }
+  .home-frame .home-compact .about { padding: 20px 24px 40px; }
+  .home-frame .site-footer { padding: 24px; flex-wrap: wrap; }
+}
