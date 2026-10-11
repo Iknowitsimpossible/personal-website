@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600&family=Lora:ital,wght@0,400;1,400&display=swap');
 :root {
-  --paper: #f3f2e9;
-  --ink: #253c32;
-  --muted: #58685c;
-  --line: #d1d7c7;
-  --green: #476445;
+  --paper: #f0f5fa;
+  --ink: #29445f;
+  --muted: #59718a;
+  --line: #d3dfea;
+  --accent: #426b91;
   --serif: 'Lora', Georgia, serif;
   --sans: 'DM Sans', Arial, sans-serif;
   color-scheme: light;
@@ -45,7 +45,7 @@ button {
 }
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #9a562f;
+  outline: 3px solid #3b75a5;
   outline-offset: 7px;
 }
 p,
@@ -114,7 +114,7 @@ button[hidden],
   letter-spacing: -0.035em;
 }
 .wordmark span {
-  color: #576d42;
+  color: #597898;
 }
 .site-header nav {
   display: flex;
@@ -137,7 +137,7 @@ button[hidden],
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #c6d9d3;
+  background: #ccdeec;
 }
 .landscape {
   position: absolute;
@@ -160,9 +160,9 @@ button[hidden],
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    #d6e4db28 0%,
+    #d6e5f028 0%,
     transparent 70%,
-    #17352645 100%
+    #17365345 100%
   );
 }
 .wind-canvas {
@@ -211,14 +211,14 @@ button[hidden],
   display: flex;
   gap: 26px;
   align-items: center;
-  text-shadow: 0 1px 8px #173526;
+  text-shadow: 0 1px 8px #173653;
 }
 .walk-link span {
   font-size: 1.4rem;
 }
 .motion-toggle {
   border: 1px solid #fffee880;
-  background: #18372355;
+  background: #183a5955;
   border-radius: 40px;
   padding: 9px 17px;
   display: flex;
@@ -239,7 +239,7 @@ button[hidden],
 .selected {
   padding-top: 110px;
   padding-bottom: 65px;
-  background: linear-gradient(#dce3cd, var(--paper) 260px);
+  background: linear-gradient(#dce7f2, var(--paper) 260px);
   position: relative;
   overflow: hidden;
 }
@@ -263,7 +263,7 @@ button[hidden],
 .about {
   padding-top: 95px;
   padding-bottom: 95px;
-  background: #e4e9d9;
+  background: #e4edf6;
 }
 .about h2 {
   margin-bottom: 26px;
@@ -398,7 +398,7 @@ button[hidden],
   bottom: 160px;
   left: 40%;
   width: 32%;
-  border-right: 1px solid #b6c0a5;
+  border-right: 1px solid #b6c9dc;
   border-radius: 50%;
   transform: rotate(-15deg);
   opacity: 0.65;
@@ -426,12 +426,12 @@ button[hidden],
   aspect-ratio: 1.58;
   overflow: hidden;
   border-radius: 5px;
-  background: #263e37;
-  box-shadow: 0 24px 45px #273f3512;
+  background: #29445f;
+  box-shadow: 0 24px 45px #29445f12;
   transition: box-shadow 0.35s ease;
 }
 .project-link:hover .project-cover {
-  box-shadow: 0 30px 50px #273f3528;
+  box-shadow: 0 30px 50px #29445f28;
 }
 .has-image img {
   width: 100%;
@@ -450,17 +450,17 @@ button[hidden],
   justify-content: space-between;
   position: relative;
   isolation: isolate;
-  color: #e7ecd6;
+  color: #e7eff8;
 }
 .cover-forest {
   background:
-    radial-gradient(ellipse at 95% 80%, #59705a 0, transparent 60%), #263e37;
+    radial-gradient(ellipse at 95% 80%, #597c9b 0, transparent 60%), #29445f;
 }
 .cover-paper {
-  background: #dadbc8;
+  background: #d9e5f0;
 }
 .cover-paper .type-cover {
-  color: #3f5442;
+  color: #3f5c78;
 }
 .type-cover:before,
 .type-cover:after {
@@ -516,7 +516,7 @@ button[hidden],
   color: #c7ba86;
 }
 .cover-paper .cover-period {
-  color: #789070;
+  color: #7899b6;
 }
 .cover-bottom {
   font-size: 0.85rem;
@@ -547,7 +547,7 @@ button[hidden],
 .project-meta span + span:before {
   content: '/';
   margin-right: 15px;
-  color: #829076;
+  color: #829bb4;
 }
 .project-caption h3 {
   font-family: var(--serif);
@@ -592,7 +592,7 @@ button[hidden],
   align-items: center;
   justify-content: space-between;
   gap: 22px;
-  border: 1px solid #809276;
+  border: 1px solid #809bb5;
   border-radius: 50px;
   padding: 15px 23px;
   font-size: 0.9rem;
@@ -600,7 +600,7 @@ button[hidden],
   transition: background 0.2s;
 }
 .outline-link:hover {
-  background: #dfe7d3;
+  background: #dfeaf5;
 }
 .about {
   display: grid;
@@ -616,7 +616,7 @@ button[hidden],
 }
 .about-copy p {
   font-size: 1rem;
-  color: #455c4c;
+  color: #45627e;
 }
 .personal-note {
   display: block;
@@ -657,7 +657,7 @@ button[hidden],
 .sample-notice {
   font-size: 0.8rem;
   padding-left: 16px;
-  border-left: 2px solid #a4b18d;
+  border-left: 2px solid #a4bad0;
   margin-top: 28px;
 }
 .collection-grid {
@@ -739,7 +739,7 @@ button[hidden],
 }
 .prose p,
 .prose li {
-  color: #45594c;
+  color: #45627e;
   line-height: 1.85;
 }
 .prose a {
@@ -753,11 +753,11 @@ button[hidden],
 .prose pre {
   overflow-x: auto;
   padding: 20px;
-  background: #e3e7d8;
+  background: #e3edf6;
   font-size: 0.85rem;
 }
 .prose code {
-  background: #e3e7d8;
+  background: #e3edf6;
   padding: 2px 4px;
 }
 .project-gallery {
@@ -987,7 +987,7 @@ html[data-motion='off'] .has-image img {
     padding-top: 140px;
   }
   .landscape {
-    background: #bfd6d4;
+    background: #bfd5e8;
   }
   .landscape img,
   .wind-canvas {
@@ -1045,7 +1045,7 @@ html[data-motion='off'] .has-image img {
 .hero-compact .intro-text { max-width: 560px; margin-bottom: 22px; }
 .contact-links { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 24px; font-size: .9rem; }
 .contact-links a { text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
-.contact-links a:hover { color: var(--green); }
+.contact-links a:hover { color: var(--accent); }
 .contact-links a span { display: block; font-size: .7rem; color: var(--muted); margin-bottom: 3px; }
 .intro-work-link { display: inline-block; margin-top: 24px; font-size: .88rem; font-weight: 500; }
 .home-compact .about { padding-top: 32px; padding-bottom: 32px; gap: 6%; grid-template-columns: 1.6fr 1fr; }
@@ -1064,7 +1064,7 @@ html[data-motion='off'] .has-image img {
 
 .contact-sentences { font-size: 1rem; line-height: 1.8; max-width: 560px; margin-bottom: 0; }
 .contact-sentences a { text-decoration: underline; text-underline-offset: 4px; }
-.contact-sentences a:hover { color: var(--green); }
+.contact-sentences a:hover { color: var(--accent); }
 
 /* Match image backing to the logo while its pixels load. */
 .project-cover.has-image { background: #fff; }
