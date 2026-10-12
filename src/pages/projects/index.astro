@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { getPublishedProjects } from '../../lib/projects';
 const projects = await getPublishedProjects();
@@ -12,7 +11,6 @@ const projects = await getPublishedProjects();
   preloadImage={projects[0]?.data.cover?.src}
   description="A growing collection of projects, experiments, and lessons learned."
 >
-  <div id="top"></div>
   <Header />
   <main id="main" class="collection-page section-shell">
     <a class="back-link" href="/">
@@ -32,5 +30,4 @@ const projects = await getPublishedProjects();
       </p>
     )}
   </main>
-  <Footer />
 </Base>

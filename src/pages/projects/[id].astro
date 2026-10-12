@@ -2,7 +2,6 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import ProjectCover from '../../components/ProjectCover.astro';
 import { getPublishedProjects } from '../../lib/projects';
 export async function getStaticPaths() {
@@ -23,7 +22,6 @@ const { data } = project;
 ---
 
 <Base title={`${data.title} — Jeff Li`} description={data.summary}>
-  <div id="top"></div>
   <Header />
   <main id="main" class="project-page section-shell">
     <a class="back-link" href="/projects/">
@@ -89,5 +87,4 @@ const { data } = project;
     )}
 
   </main>
-  <Footer />
 </Base>
