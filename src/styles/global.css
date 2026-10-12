@@ -1096,6 +1096,7 @@ html[data-motion='off'] .has-image img {
 }
 .home-frame .site-header { padding: 28px; }
 .home-frame .hero.hero-compact { padding: 48px 28px 36px; }
+.home-frame .hero-compact h1 { margin-bottom: 30px; }
 .home-frame .hero-compact::before,
 .home-frame .hero-compact::after { display: none; }
 .home-frame .intro-text,
@@ -1109,7 +1110,7 @@ html[data-motion='off'] .has-image img {
 .home-frame .about-copy .eyebrow {
   font-size: .68rem;
   color: var(--muted);
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 .home-frame .about-motto { margin-top: 28px; }
 .home-frame .about-motto h2 {
