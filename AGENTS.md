@@ -2,7 +2,8 @@
 
 - Keep all website content and repository documentation in English.
 - GitHub Pages is the deployment target. Push changes to `main` to trigger
-  `.github/workflows/deploy.yml`; verify the Actions run succeeds.
+  `.github/workflows/deploy.yml`. Do not watch the Actions run or check the
+  live site after pushing; Jeff checks deploys.
 - Do not publish changes through OpenAI Sites. The existing `.openai/hosting.json`
   identifies the previous host and is retained until the old setup is removed.
 - Always pull the latest `main` before editing; other assistants also update this
