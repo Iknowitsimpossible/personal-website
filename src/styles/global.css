@@ -538,13 +538,6 @@ button[hidden],
   color: var(--muted);
   margin: 0;
 }
-.project-arrow {
-  font-size: 1.75rem;
-  transition: transform 0.2s;
-}
-.project-link:hover .project-arrow {
-  transform: translate(3px, -3px);
-}
 .project-trail .project-card:last-child {
   margin-bottom: 25px;
 }
@@ -939,7 +932,6 @@ html[data-motion='off'] .project-card {
 html[data-motion='off'] .landscape {
   transform: none !important;
 }
-html[data-motion='off'] .project-arrow,
 html[data-motion='off'] .has-image img {
   transition: none;
 }
