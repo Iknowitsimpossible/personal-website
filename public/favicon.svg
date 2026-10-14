@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">Jeff Li — North Star</title>
-  <rect width="64" height="64" rx="20" fill="#29445f"/>
-  <ellipse cx="32" cy="32" rx="25" ry="12" transform="rotate(-38 32 32)" fill="none" stroke="#9cb9d4" stroke-width="2"/>
-  <path d="M32 16c2 11 5 14 16 16-11 2-14 5-16 16-2-11-5-14-16-16 11-2 14-5 16-16Z" fill="#f0f5fa"/>
-  <circle cx="49" cy="15" r="3" fill="#bad3e9"/>
-</svg>
