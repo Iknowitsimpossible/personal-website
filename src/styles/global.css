@@ -1179,3 +1179,64 @@ html[data-motion='off'] .has-image img {
     padding-right: 24px;
   }
 }
+/* Blog: a quiet text list on /blog/ and a single reading column per post. */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.post-list li {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.post-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.post-list time {
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding-top: 4px;
+}
+.post-row {
+  text-decoration: none;
+}
+.post-category {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.post-row h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+.post-row:hover h2 {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+.post-row p {
+  margin: 0;
+  color: var(--muted);
+}
+.post-page .page-intro h1 {
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .post-list li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 22px 0;
+  }
+  .post-list time {
+    padding-top: 0;
+  }
+}

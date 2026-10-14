@@ -44,6 +44,12 @@
   to `true`, so set `draft: false` to publish. The projects list is an auto-fill grid
   (3, then 2, then 1 columns), so new projects need no layout changes.
 
+- Blog posts are Markdown files in `src/content/posts/` (schema in
+  `src/content.config.ts`); start from `docs/templates/post.md`. Each post has one
+  `category`: `reflection`, `project-log`, or `concepts-explained` (display labels
+  live in `src/lib/posts.ts`). `draft` defaults to `true`. `/blog/` is a dated text
+  list, newest first, with the sky; post pages stay plain like project pages.
+
 ## Deploying
 
 - After a push, the Actions run usually finishes within a couple of minutes.

@@ -1,0 +1,39 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import { categoryLabels, formatPostDate, getPublishedPosts } from '../../lib/posts';
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { data } = post;
+---
+
+<Base title={`${data.title} — Jeff Li`} description={data.summary}>
+  <Header />
+  <main id="main" class="collection-page post-page section-shell">
+    <a class="back-link" href="/blog/">
+      ← All posts
+    </a>
+    <header class="page-intro">
+      <p class="eyebrow">
+        {categoryLabels[data.category]} /{' '}
+        <time datetime={data.date.toISOString()}>{formatPostDate(data.date)}</time>
+      </p>
+      <h1>{data.title}</h1>
+      <p class="project-deck">{data.summary}</p>
+    </header>
+    <article class="prose">
+      <Content />
+    </article>
+  </main>
+</Base>

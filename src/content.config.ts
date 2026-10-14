@@ -39,4 +39,15 @@ const projects = defineCollection({
     github: z.url({ protocol: /^https$/ }).optional(),
   }),
 });
-export const collections = { projects };
+// Blog posts: one Markdown file per post, newest first on /blog/.
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    date: z.coerce.date(),
+    category: z.enum(['reflection', 'project-log', 'concepts-explained']),
+    draft: z.boolean().default(true),
+  }),
+});
+export const collections = { projects, posts };
