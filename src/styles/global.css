@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600&family=Lora:ital,wght@0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
 :root {
   --paper: #f0f5fa;
   --ink: #29445f;
   --muted: #59718a;
   --line: #d3dfea;
   --accent: #426b91;
-  --serif: 'Lora', Georgia, serif;
+  --serif: 'Newsreader', Georgia, serif;
   --sans: 'DM Sans', Arial, sans-serif;
   color-scheme: light;
   font-family: var(--sans);
