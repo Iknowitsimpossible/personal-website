@@ -13,7 +13,7 @@ import { CONSTELLATIONS, projectConstellation } from './constellations';
 const INK = '41, 68, 95'; // --ink
 const ACCENT = '66, 107, 145'; // --accent
 const WARM = '201, 146, 52'; // the gold of the star in the header portrait
-const PAPER = '240, 245, 250'; // --paper
+const SAGE = '104, 146, 112'; // muted green for the hills
 
 const LAYER_DEPTH = [0.25, 0.55, 1];
 const CURSOR_RADIUS = 150;
@@ -288,7 +288,8 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     const pick = choices[Math.floor(Math.random() * choices.length)];
     const entry = catalog[pick];
 
-    const scale = Math.min(7, Math.max(4, width / 220)) * (0.85 + Math.random() * 0.3);
+    // Every figure spans about the same area around the cursor, whatever its real size.
+    const scale = (95 + Math.random() * 30) / entry.extent;
     const angle = (Math.random() - 0.5) * 0.5; // a small tilt, like the sky turning
     const reach = entry.extent * scale * 0.6;
     // Try centering on the cursor first, then nudge sideways to stay off the text.
@@ -296,8 +297,8 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     for (const [dx, dy] of offsets) {
       const candidate = { entry, x: x + dx, y: y + dy, scale, angle };
       const box = bounds(placeStars(candidate));
-      const onScreenFully = box.left > 8 && box.right < width - 8 && box.top > 8 && box.bottom + 24 < height;
-      if (!onScreenFully || rectCoversText(box.left - 8, box.top - 8, box.right + 8, box.bottom + 24)) continue;
+      const onScreenFully = box.left > 8 && box.right < width - 8 && box.top > 8 && box.bottom + 8 < height;
+      if (!onScreenFully || rectCoversText(box.left - 8, box.top - 8, box.right + 8, box.bottom + 8)) continue;
 
       shown.push({
         ...candidate,
@@ -323,13 +324,14 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     }
     shown = shown.filter((item) => !(item.fading && item.reveal < 0.01));
 
+    // Drawn in the same style as ordinary stars and the faint lines that join
+    // them, so the figure reads as part of the sky rather than a diagram.
     for (const item of shown) {
       const reveal = item.reveal;
       const stars = placeStars(item);
-      const box = bounds(stars);
 
-      ctx.strokeStyle = `rgba(${ACCENT}, ${0.42 * reveal})`;
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = `rgba(${ACCENT}, ${0.3 * reveal})`;
+      ctx.lineWidth = 0.8;
       ctx.beginPath();
       for (const [from, to] of item.entry.lines) {
         ctx.moveTo(stars[from].x, stars[from].y);
@@ -339,27 +341,13 @@ export function startNightSky(canvas: HTMLCanvasElement) {
 
       for (const [index, star] of stars.entries()) {
         const twinkle = reducedMotion.matches ? 1 : 0.85 + 0.15 * Math.sin(time * 0.0012 + index * 1.7);
-        // Brighter catalog stars (smaller magnitude) draw larger.
-        const size = Math.max(1, 2.7 - 0.4 * star.mag);
-        ctx.fillStyle = `rgba(${INK}, ${0.8 * reveal * twinkle})`;
+        // Brighter catalog stars (smaller magnitude) are a touch larger.
+        const size = Math.max(1.1, 2.1 - 0.3 * star.mag);
+        ctx.fillStyle = `rgba(${INK}, ${0.75 * reveal * twinkle})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
         ctx.fill();
       }
-
-      const label = item.entry.name.toUpperCase();
-      const labelX = (box.left + box.right) / 2;
-      const labelY = box.bottom + 20;
-      ctx.font = '500 10px "DM Sans", Arial, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.letterSpacing = '0.14em';
-      // A patch of paper color behind the name, so stray stars can't land in it.
-      const labelWidth = ctx.measureText(label).width + 24;
-      ctx.fillStyle = `rgba(${PAPER}, ${reveal})`;
-      ctx.fillRect(labelX - labelWidth / 2, labelY - 12, labelWidth, 18);
-      ctx.fillStyle = `rgba(${INK}, ${0.6 * reveal})`;
-      ctx.fillText(label, labelX, labelY);
-      ctx.letterSpacing = '0px';
     }
   }
 
@@ -388,7 +376,7 @@ export function startNightSky(canvas: HTMLCanvasElement) {
   function drawHill(ridge: (x: number) => number, alpha: number) {
     const bottom = Math.max(height, ground());
     if (ground() - hillHeight() > height) return; // still below the screen
-    ctx.fillStyle = `rgba(${ACCENT}, ${alpha})`;
+    ctx.fillStyle = `rgba(${SAGE}, ${alpha})`;
     ctx.beginPath();
     ctx.moveTo(0, bottom);
     for (let x = 0; x <= width + 8; x += 8) ctx.lineTo(x, ridge(x));
@@ -488,8 +476,8 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     drawStars(time);
     drawBrightStars(time);
     drawConstellations(time);
-    drawHill(backRidge, 0.08);
-    drawHill(frontRidge, 0.14);
+    drawHill(backRidge, 0.12);
+    drawHill(frontRidge, 0.2);
     drawOnRidge(0.765, drawTelescope);
     drawOnRidge(0.815, drawLaptop);
   }
@@ -547,7 +535,15 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     if (reducedMotion.matches) draw(0);
     else launchShootingStar(event.clientX, event.clientY);
   });
-  window.addEventListener('scroll', () => reducedMotion.matches && draw(0), { passive: true });
+  // Scrolling slides text under a figure that was placed to avoid it, so let it go.
+  window.addEventListener(
+    'scroll',
+    () => {
+      fadeAllConstellations();
+      if (reducedMotion.matches) draw(0);
+    },
+    { passive: true },
+  );
   document.addEventListener('visibilitychange', start);
   reducedMotion.addEventListener('change', start);
 
