@@ -1,12 +1,16 @@
 ---
 import '../styles/global.css';
+import NightSky from '../components/NightSky.astro';
 interface Props {
   title?: string;
   description?: string;
   preloadImage?: string;
+  /** Draw the night sky behind the page. */
+  sky?: boolean;
 }
 const {
   preloadImage,
+  sky = false,
   title = 'Jeff Li — Personal portfolio',
   description = 'Meet Jeff Li: projects, thoughtful work, and interests from soccer to astronomy.',
 } = Astro.props;
@@ -25,7 +29,8 @@ const {
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <title>{title}</title>
   </head>
-  <body>
+  <body class:list={{ 'has-sky': sky }}>
+    {sky && <NightSky />}
     <a class="skip-link" href="#main">
       Skip to content
     </a>

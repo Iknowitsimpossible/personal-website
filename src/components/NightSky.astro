@@ -1,0 +1,16 @@
+---
+/**
+ * A full-page night sky drawn behind the content: twinkling stars in three
+ * depth layers, a few bright glinting stars, shooting stars, and two hills
+ * with a telescope and a laptop set up on the ridge.
+ * Decorative only, so it is hidden from screen readers.
+ */
+---
+
+<canvas class="night-sky" aria-hidden="true"></canvas>
+
+<script>
+  import { startNightSky } from '../scripts/night-sky';
+  const canvas = document.querySelector<HTMLCanvasElement>('.night-sky');
+  if (canvas) startNightSky(canvas);
+</script>

@@ -1098,3 +1098,23 @@ html[data-motion='off'] .has-image img {
   .home-frame .hero.hero-compact { padding: 28px 24px 28px; }
   .home-frame .home-compact .about { padding: 20px 24px 40px; }
 }
+
+/* Night sky behind the home page and the projects list (see NightSky.astro).
+   z-index -1 paints it above the root's paper color but below everything
+   else, so the page sections over it must stay transparent. */
+.night-sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+.has-sky .home-frame,
+.has-sky .hero-compact {
+  background: transparent;
+}
+/* The hills sit at the very bottom of the page; keep the last section above them. */
+.has-sky main {
+  padding-bottom: calc(min(170px, 17vh) + 40px);
+}
