@@ -17,18 +17,8 @@ const PAPER = '240, 245, 250'; // --paper
 
 const LAYER_DEPTH = [0.25, 0.55, 1];
 const CURSOR_RADIUS = 150;
-const CONSTELLATION_DEPTH = 0.3;
-
-// Where each constellation sits, as fractions of the screen. They live in the
-// side margins so their lines stay clear of the text column on wide screens.
-const PLACEMENTS: Record<string, { x: number; y: number }> = {
-  Cassiopeia: { x: 0.1, y: 0.17 },
-  Cygnus: { x: 0.1, y: 0.5 },
-  Lyra: { x: 0.13, y: 0.8 },
-  'Ursa Major': { x: 0.87, y: 0.17 },
-  Leo: { x: 0.88, y: 0.5 },
-  Orion: { x: 0.9, y: 0.8 },
-};
+// How far the mouse can wander from a constellation before it fades away.
+const CONSTELLATION_LINGER = 70;
 
 interface Star {
   x: number; // 0..1 across the sky
@@ -79,14 +69,20 @@ export function startNightSky(canvas: HTMLCanvasElement) {
   let textBoxes: { left: number; right: number; top: number; bottom: number }[] = [];
   function measureText() {
     const pad = 6;
-    textBoxes = [...document.querySelectorAll('main :is(h1, h2, h3, p, li, a, img)')].map((element) => {
-      const box = element.getBoundingClientRect();
-      return {
-        left: box.left - pad,
-        right: box.right + pad,
-        top: box.top + window.scrollY - pad,
-        bottom: box.bottom + window.scrollY + pad,
-      };
+    const range = document.createRange();
+    textBoxes = [...document.querySelectorAll('main :is(h1, h2, h3, p, li, img, svg)')].flatMap((element) => {
+      // A paragraph's own box spans the whole column even when a line is short,
+      // so measure each rendered line of text instead.
+      range.selectNodeContents(element);
+      const rects = element.matches('img, svg') ? [element.getBoundingClientRect()] : [...range.getClientRects()];
+      return rects
+        .filter((box) => box.width > 0 && box.height > 0)
+        .map((box) => ({
+          left: box.left - pad,
+          right: box.right + pad,
+          top: box.top + window.scrollY - pad,
+          bottom: box.bottom + window.scrollY + pad,
+        }));
     });
   }
   function coversText(x: number, y: number) {
@@ -229,16 +225,29 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     }
   }
 
-  // Each constellation's figure fades in (0 → 1) while the mouse is near it.
-  const constellations = CONSTELLATIONS.map((constellation) => {
+  // Real constellations, flattened once up front (in degrees around their centers).
+  const catalog = CONSTELLATIONS.map((constellation) => {
     const points = projectConstellation(constellation);
-    return {
-      ...constellation,
-      points,
-      extent: Math.max(...points.map((point) => Math.hypot(point.x, point.y))),
-      reveal: 0,
-    };
+    return { ...constellation, points, extent: Math.max(...points.map((p) => Math.hypot(p.x, p.y))) };
   });
+  type CatalogEntry = (typeof catalog)[number];
+
+  // Constellations currently drawn around the cursor. Each fades in (reveal
+  // 0 → 1), then fades out once the mouse moves away.
+  interface ShownConstellation {
+    entry: CatalogEntry;
+    x: number;
+    y: number;
+    anchorX: number; // where the mouse was when it formed
+    anchorY: number;
+    reach: number; // how far the mouse can roam before it fades
+    scale: number;
+    angle: number;
+    reveal: number;
+    fading: boolean;
+  }
+  let shown: ShownConstellation[] = [];
+  let lastPick = -1;
 
   function rectCoversText(left: number, top: number, right: number, bottom: number) {
     return textBoxes.some(
@@ -247,77 +256,110 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     );
   }
 
+  // A constellation's stars in screen pixels, rotated and scaled into place.
+  function placeStars(item: Pick<ShownConstellation, 'entry' | 'x' | 'y' | 'scale' | 'angle'>) {
+    const cos = Math.cos(item.angle);
+    const sin = Math.sin(item.angle);
+    return item.entry.points.map((point) => ({
+      x: item.x + (point.x * cos - point.y * sin) * item.scale,
+      y: item.y + (point.x * sin + point.y * cos) * item.scale,
+      mag: point.mag,
+    }));
+  }
+
+  function bounds(stars: { x: number; y: number }[]) {
+    const xs = stars.map((star) => star.x);
+    const ys = stars.map((star) => star.y);
+    return { left: Math.min(...xs), right: Math.max(...xs), top: Math.min(...ys), bottom: Math.max(...ys) };
+  }
+
+  // Forms a new constellation around (x, y), unless one is already there.
+  function revealConstellationAt(x: number, y: number) {
+    // Distances are measured from where each figure formed, not its center,
+    // because a figure may have been nudged sideways to stay off the text.
+    const awayFrom = (item: ShownConstellation) => Math.hypot(x - item.anchorX, y - item.anchorY) > item.reach;
+    for (const item of shown) if (awayFrom(item)) item.fading = true;
+    if (shown.some((item) => !item.fading)) return;
+
+    // Pick a constellation that isn't on screen right now, never the same one twice in a row.
+    const onScreen = new Set(shown.map((item) => item.entry.name));
+    const choices = catalog.map((_, index) => index).filter((index) => index !== lastPick && !onScreen.has(catalog[index].name));
+    if (!choices.length) return;
+    const pick = choices[Math.floor(Math.random() * choices.length)];
+    const entry = catalog[pick];
+
+    const scale = Math.min(7, Math.max(4, width / 220)) * (0.85 + Math.random() * 0.3);
+    const angle = (Math.random() - 0.5) * 0.5; // a small tilt, like the sky turning
+    const reach = entry.extent * scale * 0.6;
+    // Try centering on the cursor first, then nudge sideways to stay off the text.
+    const offsets = [[0, 0], [reach, 0], [-reach, 0], [0, -reach], [0, reach]];
+    for (const [dx, dy] of offsets) {
+      const candidate = { entry, x: x + dx, y: y + dy, scale, angle };
+      const box = bounds(placeStars(candidate));
+      const onScreenFully = box.left > 8 && box.right < width - 8 && box.top > 8 && box.bottom + 24 < height;
+      if (!onScreenFully || rectCoversText(box.left - 8, box.top - 8, box.right + 8, box.bottom + 24)) continue;
+
+      shown.push({
+        ...candidate,
+        anchorX: x,
+        anchorY: y,
+        reach: Math.max(90, entry.extent * scale) + CONSTELLATION_LINGER,
+        reveal: 0,
+        fading: false,
+      });
+      lastPick = pick;
+      return;
+    }
+  }
+
+  function fadeAllConstellations() {
+    for (const item of shown) item.fading = true;
+  }
+
   function drawConstellations(time: number) {
-    // Degrees to pixels: roomier on wide screens, never huge.
-    const scale = Math.min(7.5, Math.max(4, width / 200));
-    // Touch screens and reduced motion can't hover, so show the figures faintly.
-    const resting = coarsePointer || reducedMotion.matches ? 0.35 : 0;
+    for (const item of shown) {
+      const target = item.fading ? 0 : 1;
+      item.reveal += (target - item.reveal) * (reducedMotion.matches ? 1 : 0.08);
+    }
+    shown = shown.filter((item) => !(item.fading && item.reveal < 0.01));
 
-    for (const constellation of constellations) {
-      const place = PLACEMENTS[constellation.name];
-      const centerX = place.x * width + parallax.x * CONSTELLATION_DEPTH * 14;
-      const centerY =
-        ((place.y * height - window.scrollY * CONSTELLATION_DEPTH * 0.06 + parallax.y * CONSTELLATION_DEPTH * 10) %
-          height +
-          height) %
-        height;
-      const stars = constellation.points.map((point) => ({
-        x: centerX + point.x * scale,
-        y: centerY + point.y * scale,
-        mag: point.mag,
-      }));
+    for (const item of shown) {
+      const reveal = item.reveal;
+      const stars = placeStars(item);
+      const box = bounds(stars);
 
-      const radius = constellation.extent * scale;
-      const hovered = mouse.active && Math.hypot(mouse.x - centerX, mouse.y - centerY) < radius + 40;
-      const target = Math.max(resting, hovered ? 1 : 0);
-      constellation.reveal += (target - constellation.reveal) * (reducedMotion.matches ? 1 : 0.07);
-      const reveal = constellation.reveal;
-
-      const xs = stars.map((star) => star.x);
-      const ys = stars.map((star) => star.y);
-      const left = Math.min(...xs);
-      const right = Math.max(...xs);
-      const top = Math.min(...ys);
-      const bottom = Math.max(...ys);
-      // On narrow screens a figure may land on text; keep its lines and name hidden then.
-      const figureAllowed = !rectCoversText(left - 8, top - 8, right + 8, bottom + 24);
-
-      if (figureAllowed && reveal > 0.01) {
-        ctx.strokeStyle = `rgba(${ACCENT}, ${0.45 * reveal})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        for (const [from, to] of constellation.lines) {
-          ctx.moveTo(stars[from].x, stars[from].y);
-          ctx.lineTo(stars[to].x, stars[to].y);
-        }
-        ctx.stroke();
-
-        const label = constellation.name.toUpperCase();
-        const labelX = (left + right) / 2;
-        const labelY = bottom + 20;
-        ctx.font = '500 10px "DM Sans", Arial, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.letterSpacing = '0.14em';
-        // A patch of paper color behind the name, so stray stars can't land in it.
-        const labelWidth = ctx.measureText(label).width + 10;
-        ctx.fillStyle = `rgba(${PAPER}, ${reveal})`;
-        ctx.fillRect(labelX - labelWidth / 2, labelY - 10, labelWidth, 14);
-        ctx.fillStyle = `rgba(${INK}, ${0.6 * reveal})`;
-        ctx.fillText(label, labelX, labelY);
-        ctx.letterSpacing = '0px';
+      ctx.strokeStyle = `rgba(${ACCENT}, ${0.42 * reveal})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (const [from, to] of item.entry.lines) {
+        ctx.moveTo(stars[from].x, stars[from].y);
+        ctx.lineTo(stars[to].x, stars[to].y);
       }
+      ctx.stroke();
 
       for (const [index, star] of stars.entries()) {
-        if (star.y > frontRidge(star.x) - 4 || coversText(star.x, star.y)) continue;
-        const twinkle = reducedMotion.matches ? 1 : 0.8 + 0.2 * Math.sin(time * 0.0012 + index * 1.7);
-        const alpha = (0.42 + 0.4 * reveal) * twinkle;
+        const twinkle = reducedMotion.matches ? 1 : 0.85 + 0.15 * Math.sin(time * 0.0012 + index * 1.7);
         // Brighter catalog stars (smaller magnitude) draw larger.
-        const size = Math.max(0.9, 2.5 - 0.4 * star.mag) + reveal * 0.4;
-        ctx.fillStyle = `rgba(${INK}, ${alpha})`;
+        const size = Math.max(1, 2.7 - 0.4 * star.mag);
+        ctx.fillStyle = `rgba(${INK}, ${0.8 * reveal * twinkle})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
         ctx.fill();
       }
+
+      const label = item.entry.name.toUpperCase();
+      const labelX = (box.left + box.right) / 2;
+      const labelY = box.bottom + 20;
+      ctx.font = '500 10px "DM Sans", Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.letterSpacing = '0.14em';
+      // A patch of paper color behind the name, so stray stars can't land in it.
+      const labelWidth = ctx.measureText(label).width + 24;
+      ctx.fillStyle = `rgba(${PAPER}, ${reveal})`;
+      ctx.fillRect(labelX - labelWidth / 2, labelY - 12, labelWidth, 18);
+      ctx.fillStyle = `rgba(${INK}, ${0.6 * reveal})`;
+      ctx.fillText(label, labelX, labelY);
+      ctx.letterSpacing = '0px';
     }
   }
 
@@ -489,16 +531,21 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     mouse.active = true;
     parallax.targetX = event.clientX / width - 0.5;
     parallax.targetY = event.clientY / height - 0.5;
+    revealConstellationAt(event.clientX, event.clientY);
+    if (reducedMotion.matches) draw(0); // no animation loop runs, so draw now
   });
   document.addEventListener('pointerleave', () => {
     mouse.active = false;
+    fadeAllConstellations();
   });
-  // Clicking empty sky sends a shooting star from that spot.
+  // Clicking empty sky sends a shooting star from that spot. Touch screens
+  // can't hover, so a tap there also draws a constellation.
   window.addEventListener('click', (event) => {
-    if (reducedMotion.matches) return;
     if ((event.target as Element).closest('a, button, input, textarea, select')) return;
     if (window.getSelection()?.toString()) return;
-    launchShootingStar(event.clientX, event.clientY);
+    if (coarsePointer) revealConstellationAt(event.clientX, event.clientY);
+    if (reducedMotion.matches) draw(0);
+    else launchShootingStar(event.clientX, event.clientY);
   });
   window.addEventListener('scroll', () => reducedMotion.matches && draw(0), { passive: true });
   document.addEventListener('visibilitychange', start);

@@ -94,6 +94,39 @@ export const CONSTELLATIONS: Constellation[] = [
     ],
     lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [2, 6], [6, 7], [7, 8], [8, 0]],
   },
+  {
+    name: 'Gemini',
+    stars: [
+      { name: 'Castor', ra: 7.577, dec: 31.89, mag: 1.6 },
+      { name: 'Pollux', ra: 7.755, dec: 28.03, mag: 1.1 },
+      { name: 'Mebsuta', ra: 6.732, dec: 25.13, mag: 3 },
+      { name: 'Tejat', ra: 6.383, dec: 22.51, mag: 2.9 },
+      { name: 'Wasat', ra: 7.335, dec: 21.98, mag: 3.5 },
+      { name: 'Mekbuda', ra: 7.068, dec: 20.57, mag: 3.8 },
+      { name: 'Alhena', ra: 6.629, dec: 16.4, mag: 1.9 },
+    ],
+    lines: [[0, 1], [0, 2], [2, 3], [1, 4], [4, 5], [5, 6]],
+  },
+  {
+    name: 'Scorpius',
+    stars: [
+      { name: 'Acrab', ra: 16.091, dec: -19.81, mag: 2.6 },
+      { name: 'Dschubba', ra: 16.006, dec: -22.62, mag: 2.3 },
+      { name: 'Fang', ra: 15.981, dec: -26.11, mag: 2.9 },
+      { name: 'Alniyat', ra: 16.353, dec: -25.59, mag: 2.9 },
+      { name: 'Antares', ra: 16.49, dec: -26.43, mag: 1 },
+      { name: 'Paikauhale', ra: 16.598, dec: -28.22, mag: 2.8 },
+      { name: 'Larawag', ra: 16.836, dec: -34.29, mag: 2.3 },
+      { name: 'Xamidimura', ra: 16.864, dec: -38.05, mag: 3 },
+      { name: 'Zeta Scorpii', ra: 16.91, dec: -42.36, mag: 3.6 },
+      { name: 'Eta Scorpii', ra: 17.203, dec: -43.24, mag: 3.3 },
+      { name: 'Sargas', ra: 17.622, dec: -43, mag: 1.9 },
+      { name: 'Iota Scorpii', ra: 17.793, dec: -40.13, mag: 3 },
+      { name: 'Girtab', ra: 17.708, dec: -39.03, mag: 2.4 },
+      { name: 'Shaula', ra: 17.56, dec: -37.1, mag: 1.6 },
+    ],
+    lines: [[0, 1], [1, 2], [1, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10], [10, 11], [11, 12], [12, 13]],
+  },
 ];
 
 /**
