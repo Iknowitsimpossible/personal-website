@@ -1022,7 +1022,7 @@ html[data-motion='off'] .has-image img {
 .contact-links a { text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
 .contact-links a:hover { color: var(--accent); }
 .contact-links a span { display: block; font-size: .7rem; color: var(--muted); margin-bottom: 3px; }
-.intro-work-link { display: inline-block; margin-top: 24px; font-size: .88rem; font-weight: 500; }
+.intro-work-link { display: inline-block; margin-top: 0; font-size: .88rem; font-weight: 500; }
 .home-compact .about { padding-top: 32px; padding-bottom: 32px; gap: 6%; grid-template-columns: 1.6fr 1fr; }
 .home-compact .about h2 { font-size: clamp(1.7rem, 2.7vw, 2.5rem); }
 .home-compact .about-copy p { font-size: .92rem; margin-bottom: 12px; }
@@ -1037,9 +1037,29 @@ html[data-motion='off'] .has-image img {
   .contact-links { gap: 14px 22px; }
 }
 
-.contact-sentences { font-size: 1rem; line-height: 1.8; max-width: 560px; margin-bottom: 0; }
-.contact-sentences a { text-decoration: underline; text-underline-offset: 4px; }
-.contact-sentences a:hover { color: var(--accent); }
+/* Icon-only contact links under the homepage title (SocialLinks.astro). */
+.social-links {
+  display: flex;
+  gap: 6px;
+  margin: -12px 0 26px -8px; /* -8px lines the first icon up with the title */
+  padding: 0;
+  list-style: none;
+}
+.social-links a {
+  display: grid;
+  place-items: center;
+  width: 38px; /* comfortably tappable on a phone */
+  height: 38px;
+  margin: 0;
+  border-radius: 50%;
+  color: var(--ink);
+  transition: color 0.2s, background 0.2s;
+}
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--accent);
+  background: #dfeaf5;
+}
 
 /* Match image backing to the logo while its pixels load. */
 .project-cover.has-image { background: #fff; }
@@ -1073,8 +1093,7 @@ html[data-motion='off'] .has-image img {
 .home-frame .hero-compact h1 { margin-bottom: 30px; }
 .home-frame .hero-compact::before,
 .home-frame .hero-compact::after { display: none; }
-.home-frame .intro-text,
-.home-frame .contact-sentences { max-width: 680px; }
+.home-frame .intro-text { max-width: 680px; }
 .home-frame .home-compact .about {
   display: block;
   padding: 24px 28px 56px;
