@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <title>Rate My Teacher</title>
+  <desc>Original monochrome RMT cover with a split black-and-white wordmark and the line Classroom experiences, shared.</desc>
+  <defs>
+    <radialGradient id="background" cx="0.66" cy="0" r="1.1" gradientTransform="matrix(0 800 -1200 0 800 0)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#454545"/>
+      <stop offset="0.6" stop-color="#1b1b1b"/>
+      <stop offset="1" stop-color="#080808"/>
+    </radialGradient>
+    <linearGradient id="line" x1="180" y1="570" x2="1020" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#background)" d="M0 0h1200v800H0z"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="600" y="198" fill="#c5c5c5" font-size="20" letter-spacing="7">STUDENT PERSPECTIVES</text>
+    <rect x="190" y="260" width="820" height="132" rx="5" fill="#080808" stroke="#777"/>
+    <path d="M600 261h405a4 4 0 0 1 4 4v122a4 4 0 0 1-4 4H600z" fill="#fafafa"/>
+    <text x="397" y="342" fill="#fafafa" font-size="42" font-weight="700" letter-spacing="8">RATE MY</text>
+    <text x="805" y="342" fill="#111" font-size="42" font-weight="700" letter-spacing="8">TEACHER</text>
+    <text x="600" y="486" fill="#f4f4f4" font-size="39" font-weight="500" letter-spacing="-0.5">Classroom experiences, shared.</text>
+    <path d="M180 570h840" stroke="url(#line)"/>
+    <text x="600" y="625" fill="#a6a6a6" font-size="22" letter-spacing="5">BIPH · 2025</text>
+  </g>
+</svg>

@@ -2,8 +2,8 @@
 title: RMT — Rate My Teacher
 coverTitle: RMT
 cover:
-  src: /images/projects/rmt.png
-  alt: Rate My Teacher homepage with anonymous reviews for BIPH teachers and an entry button.
+  src: /images/projects/rmt-cover.svg
+  alt: Original Rate My Teacher cover with a black-and-white wordmark on charcoal, and the line Classroom experiences, shared.
   fit: cover
 summary: A teacher-review platform for BIPH students to share classroom experiences and explore classes.
 category: Web Application
