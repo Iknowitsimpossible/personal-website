@@ -23,7 +23,7 @@ const { data } = project;
 
 <Base title={`${data.title} — Jeff Li`} description={data.summary}>
   <Header />
-  <main id="main" class="project-page section-shell">
+  <main id="main" class="project-page section-shell" data-project={project.id}>
     <a class="back-link" href="/projects/">
       ← All projects
     </a>
