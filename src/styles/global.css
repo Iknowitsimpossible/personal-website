@@ -1235,10 +1235,12 @@ html[data-motion='off'] .has-image img {
 .project-page[data-project='rmt'] .page-intro h1 {
   font-size: clamp(2rem, 4vw, 3rem);
 }
+.project-page[data-project='scottylab-ai'] .page-intro,
 .project-page[data-project='rmt'] .page-intro {
   margin-inline: auto;
   text-align: center;
 }
+.project-page[data-project='scottylab-ai'] .page-intro > p,
 .project-page[data-project='rmt'] .page-intro > p {
   margin-inline: auto;
 }
