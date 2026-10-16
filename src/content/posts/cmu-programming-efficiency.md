@@ -149,6 +149,6 @@ Then I can measure the program and see whether the reasoning explains what happe
 
 Python gives these questions concrete examples, but they travel well to other languages, such as C, which I am going to learn next semester. The syntax and library costs may change. The habit of tracing work as the input grows remains useful.
 
-For me, that is what makes efficiency worth learning early: I can look at a correct program and begin to explain how it will behave on a larger problem. This is why I chose to write this article and share it with more people.
+For me, that is what makes efficiency worth learning early: <mark>I can look at a correct program and begin to explain how it will behave on a larger problem.</mark> This is why I chose to write this article and share it with more people.
 
 *This article is based on my study notes and the supplied CMU 15-112 Unit 8 summary. Examples and reflections are my own presentation of the ideas; this article is not affiliated with or endorsed by CMU.*

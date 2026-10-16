@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
 :root {
   --paper: #f0f5fa;
   --ink: #29445f;
@@ -726,6 +726,23 @@ button[hidden],
   padding: 20px;
   background: #e3edf6;
   font-size: 0.85rem;
+}
+.prose pre.astro-code {
+  background: #e3edf6 !important;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
+.post-page .prose em {
+  font-style: italic;
+}
+.post-page .prose mark {
+  background: #f4e3ba;
+  color: var(--ink);
+  padding: 0.08em 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 .prose code {
   background: #e3edf6;
