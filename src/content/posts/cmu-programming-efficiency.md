@@ -106,7 +106,7 @@ But binary search needs sorted data. If the list starts unsorted, we must includ
 For Q searches:
 
 ```text
-Repeated linear search:             O(QN)
+Repeated linear search: O(QN)
 Merge sort once, then binary search: O(N log N + Q log N)
 ```
 

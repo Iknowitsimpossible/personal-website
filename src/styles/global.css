@@ -1225,7 +1225,7 @@ html[data-motion='off'] .has-image img {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #2563a6;
   margin-bottom: 4px;
 }
 .post-row h2 {
