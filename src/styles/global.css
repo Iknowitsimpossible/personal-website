@@ -1230,10 +1230,19 @@ html[data-motion='off'] .has-image img {
 .post-page .page-intro h1 {
   margin-bottom: 20px;
 }
-/* Keep the ScottyLabs introduction and wordmark at a reading-friendly scale. */
-.project-page[data-project='scottylab-ai'] .page-intro h1 {
+/* Keep project titles consistent at a reading-friendly scale. */
+.project-page[data-project='scottylab-ai'] .page-intro h1,
+.project-page[data-project='rmt'] .page-intro h1 {
   font-size: clamp(2rem, 4vw, 3rem);
 }
+.project-page[data-project='rmt'] .page-intro {
+  margin-inline: auto;
+  text-align: center;
+}
+.project-page[data-project='rmt'] .page-intro > p {
+  margin-inline: auto;
+}
+/* Keep the ScottyLabs wordmark at a reading-friendly scale. */
 .project-page[data-project='scottylab-ai'] > .project-cover {
   width: 100%;
   max-width: 520px;
