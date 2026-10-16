@@ -1,5 +1,5 @@
 ---
-title: "How CMU’s Intro Programming Course Teaches Efficiency and How It Shapes My Understanding of Efficiency"
+title: "How CMU's Intro Programming Course Teaches Efficiency"
 summary: "What studying CMU 15-112 taught me about counting work, Big O, and the cost of searching and sorting."
 date: 2026-10-16
 category: concepts-explained

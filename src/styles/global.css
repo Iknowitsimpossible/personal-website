@@ -1225,6 +1225,7 @@ html[data-motion='off'] .has-image img {
 }
 .post-row p {
   margin: 0;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 .post-page .page-intro h1 {
