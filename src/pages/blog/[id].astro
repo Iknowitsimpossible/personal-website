@@ -30,7 +30,12 @@ const { data } = post;
         <time datetime={data.date.toISOString()}>{formatPostDate(data.date)}</time>
       </p>
       <h1>{data.title}</h1>
-      <p class="project-deck">{data.summary}</p>
+      {data.cover ? (
+        <img class="post-cover" src={data.cover.src} alt={data.cover.alt}
+          width={data.cover.width} height={data.cover.height} />
+      ) : (
+        <p class="project-deck">{data.summary}</p>
+      )}
     </header>
     <article class="prose">
       <Content />

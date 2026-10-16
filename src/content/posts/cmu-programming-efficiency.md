@@ -4,6 +4,11 @@ summary: "What studying CMU 15-112 taught me about counting work, Big O, and the
 date: 2026-10-16
 category: concepts-explained
 draft: false
+cover:
+  src: /images/blog-header-business-efficiency.jpg
+  alt: 'The word Efficiency beside an upward line graph and a pointing hand.'
+  width: 1100
+  height: 733
 ---
 
 *From timing a program to reasoning about how its work grows, efficient programming is not only about finding a solution, but also about figuring out the heuristics*

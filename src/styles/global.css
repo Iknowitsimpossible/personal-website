@@ -1248,6 +1248,12 @@ html[data-motion='off'] .has-image img {
 .post-page .page-intro h1 {
   margin-bottom: 20px;
 }
+.post-page .post-cover {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+}
 /* Keep project titles consistent at a reading-friendly scale. */
 .project-page[data-project='scottylab-ai'] .page-intro h1,
 .project-page[data-project='rmt'] .page-intro h1 {

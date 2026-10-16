@@ -46,6 +46,12 @@ const posts = defineCollection({
     title: z.string().min(1),
     summary: z.string().min(1),
     date: z.coerce.date(),
+    cover: z.object({
+      src: z.string().startsWith('/images/'),
+      alt: z.string().min(1),
+      width: z.number().int().positive(),
+      height: z.number().int().positive(),
+    }).optional(),
     category: z.enum(['reflection', 'project-log', 'concepts-explained']),
     draft: z.boolean().default(true),
   }),
