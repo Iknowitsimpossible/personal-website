@@ -1244,8 +1244,9 @@ html[data-motion='off'] .has-image img {
 .project-page[data-project='rmt'] .page-intro > p {
   margin-inline: auto;
 }
-/* Keep the ScottyLabs wordmark at a reading-friendly scale. */
-.project-page[data-project='scottylab-ai'] > .project-cover {
+/* Use the same compact cover frame for both project pages. */
+.project-page[data-project='scottylab-ai'] > .project-cover,
+.project-page[data-project='rmt'] > .project-cover {
   width: 100%;
   max-width: 520px;
   aspect-ratio: 2 / 1;
