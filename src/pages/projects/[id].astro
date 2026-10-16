@@ -3,6 +3,7 @@ import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import ProjectCover from '../../components/ProjectCover.astro';
+import GitHubIcon from '../../components/GitHubIcon.astro';
 import { getPublishedProjects } from '../../lib/projects';
 export async function getStaticPaths() {
   const projects = await getPublishedProjects();
@@ -61,10 +62,12 @@ const { data } = project;
               <a
                 class="outline-link"
                 href={data.github}
+                aria-label="View on GitHub"
+                title="View on GitHub"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View on GitHub ↗
+                View on <GitHubIcon />
               </a>
             )}
           </div>
