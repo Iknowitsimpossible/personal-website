@@ -83,15 +83,7 @@ More precisely, Big O is an asymptotic upper bound. Θ(N²), read “Theta of N 
 
 The common growth rates are:
 
-| Growth | Name | A typical source |
-| --- | --- | --- |
-| O(1) | Constant | A bounded number of operations |
-| O(log N) | Logarithmic | Repeatedly halving a search range |
-| O(√N) | Square-root | Testing indices up to √N |
-| O(N) | Linear | Scanning an entire list |
-| O(N log N) | Linearithmic | Merge sort |
-| O(N²) | Quadratic | Checking every pair |
-| O(2ᴺ) | Exponential | Exploring every subset of N items, with constant work per subset |
+<a href="/images/algorithm-growth-table.png" target="_blank" rel="noopener" aria-label="Open the algorithm growth rates table at full size"><img src="/images/algorithm-growth-table.png" width="1600" height="1074" loading="lazy" alt="Common algorithm growth rates. O(1): Constant — a bounded number of operations. O(log N): Logarithmic — repeatedly halving a search range. O(√N): Square-root — testing indices up to √N. O(N): Linear — scanning an entire list. O(N log N): Linearithmic — merge sort. O(N²): Quadratic — checking every pair. O(2ᴺ): Exponential — exploring every subset of N items, with constant work per subset. N is the input size." /></a>
 
 These are growth patterns, not stopwatch readings. Constants, input structure, and implementation details still matter in practice, especially for small inputs.
 
