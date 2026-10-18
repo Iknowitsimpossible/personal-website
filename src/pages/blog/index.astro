@@ -27,7 +27,6 @@ const posts = await getPublishedPosts();
           <a class="post-row" href={`/blog/${post.id}/`}>
             <span class="post-category">{categoryLabels[post.data.category]}</span>
             <h2>{post.data.title}</h2>
-            <p>{post.data.summary}</p>
           </a>
         </li>
       ))}
