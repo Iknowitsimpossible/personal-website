@@ -35,8 +35,13 @@
 ## How pages are built
 
 - `src/layouts/Base.astro` wraps every page. Pass `sky` to draw the animated night
-  sky (`src/components/NightSky.astro`); the home page and the projects list use
-  it, while project detail pages stay plain.
+  sky (`src/components/NightSky.astro`); the projects list and blog list use it,
+  while detail pages stay plain.
+- The home page (`src/pages/index.astro`) is a plain reading page styled by
+  `src/styles/personal-home.css` (warm paper `#faf9f6`, sans headings, no sky).
+  `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
+  (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
+  "Enrichyouenergy" on every page.
 - Sky details: stars skip text, real constellations form around the cursor (data in
   `src/scripts/constellations.ts`), and hills with a telescope and laptop sit at the
   bottom of the page. Reduced motion gets a still frame.
