@@ -1,0 +1,86 @@
+---
+interface Props {
+  kind: 'ship' | 'book';
+}
+const { kind } = Astro.props;
+const label = kind === 'ship' ? 'Work' : 'Blog';
+---
+
+<a
+  class:list={['nav-object', `nav-object-${kind}`]}
+  href={kind === 'ship' ? '/projects/' : '/blog/'}
+  aria-label={label}
+>
+  {kind === 'ship' ? (
+    <svg viewBox="0 0 144 92" fill="none" aria-hidden="true">
+      <g stroke="#273b70" stroke-width="2.5" stroke-linejoin="round">
+        <path d="M30 34 14 24 20 42 13 60 34 55" fill="#b7a4ed" />
+        <path d="m50 32 17-20 19 3 8 20M51 58l17 20 18-3 8-20" fill="#ae9de5" />
+        <path d="m19 41-12 5 12 6 16-6Z" fill="#ffd796" />
+        <path d="M31 31h57c21 0 36 7 47 15-11 10-26 17-47 17H31l-8-16Z" fill="#fff0cd" />
+        <path d="M31 55h57c18 0 31-4 42-10l5 1c-11 10-26 17-47 17H31l-8-16 5-8Z" fill="#d8c9ec" stroke="none" />
+        <path d="M31 31h57c21 0 36 7 47 15-11 10-26 17-47 17H31l-8-16Z" />
+        <path d="M103 34c7 5 10 13 9 22 9-3 16-6 23-10-9-6-19-10-32-12Z" fill="#8bd5e0" />
+        <path d="m108 38 9 8" stroke="#e6fbff" stroke-linecap="round" />
+        <path d="M40 37h41" stroke="#fffaf0" stroke-linecap="round" />
+        <path d="M67 19h10M67 70h10" stroke="#e9dbff" stroke-linecap="round" />
+      </g>
+    </svg>
+  ) : (
+    <svg viewBox="0 0 112 92" fill="none" aria-hidden="true">
+      <g stroke="#273b70" stroke-width="2.5" stroke-linejoin="round">
+        <path d="M20 19c0-4 4-7 9-7h54l9 6v62H29c-5 0-9-3-9-7Z" fill="#b39ce9" />
+        <path d="M29 67h63v12H29c-5 0-9-3-9-6s4-6 9-6Z" fill="#fff0cf" />
+        <path d="M29 72h56" stroke="#d8c5aa" stroke-width="1.5" />
+        <path d="M30 12h57v55H30Z" fill="#c9b6f4" />
+        <path d="M30 12v55M36 17h45" stroke="#f0e3ff" stroke-width="2" />
+        <path d="M74 67v17l6-4 6 4V67" fill="#f8ce87" />
+        <path d="m58 21 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#ffe5ab" stroke="none" />
+      </g>
+    </svg>
+  )}
+  <span>{label}</span>
+</a>
+
+<style>
+  :global(.site-header nav) .nav-object {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    padding: 0;
+    border: 0;
+    filter: drop-shadow(0 3px 0 #162b6144);
+    transition: transform 180ms ease, filter 180ms ease;
+  }
+  .nav-object-ship { width: 132px; }
+  .nav-object-book { width: 100px; }
+  svg { display: block; width: 100%; height: auto; }
+  span {
+    position: absolute;
+    color: #293b66;
+    font: 600 19px/1 var(--display, var(--sans));
+    text-shadow: none;
+    letter-spacing: 0;
+    transform: translate(-50%, -50%);
+  }
+  .nav-object-ship span { left: 47%; top: 51%; }
+  .nav-object-book span { left: 53%; top: 51%; }
+  :global(.site-header nav) .nav-object:hover {
+    transform: translateY(-3px) rotate(-3deg);
+    filter: drop-shadow(0 5px 0 #162b6144);
+  }
+  @media (max-width: 760px) {
+    .nav-object-ship { width: 100px; }
+    .nav-object-book { width: 76px; }
+    span { font-size: 16px; }
+  }
+  @media (max-width: 380px) {
+    .nav-object-ship { width: 88px; }
+    .nav-object-book { width: 67px; }
+    span { font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.site-header nav) .nav-object { transition: none; }
+    :global(.site-header nav) .nav-object:hover { transform: none; }
+  }
+</style>

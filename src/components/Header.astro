@@ -1,15 +1,30 @@
 ---
-const { overlay = false } = Astro.props;
+import NavigationArtwork from './NavigationArtwork.astro';
+const { overlay = false, illustrated = overlay } = Astro.props;
 ---
 
 <header class:list={['site-header', { 'header-overlay': overlay }]}>
   <a class="wordmark" href="/" aria-label="Home">
-    <img class="site-logo" src="/images/jeff-logo.png" alt="" width="44" height="44" />
-    Jeff Li
+    <img
+      class="site-logo"
+      src="/images/jeff-logo.png"
+      alt=""
+      width="44"
+      height="44"
+    />
+    Enrichyouenergy
   </a>
   <nav aria-label="Main navigation">
-    <a href="/projects/">Work</a>
-    <a href="/blog/">Blog</a>
-    <a href="/#about">About Me</a>
+    {illustrated ? (
+      <>
+        <NavigationArtwork kind="ship" />
+        <NavigationArtwork kind="book" />
+      </>
+    ) : (
+      <>
+        <a href="/projects/">Work</a>
+        <a href="/blog/">Blog</a>
+      </>
+    )}
   </nav>
 </header>

@@ -1,38 +1,69 @@
 ---
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { getPublishedPosts } from '../lib/posts';
+import { getPublishedProjects } from '../lib/projects';
+import '../styles/personal-home.css';
+
+const latestPost = (await getPublishedPosts())[0];
+const agentProject = (await getPublishedProjects()).find(({ id }) => id === 'scottylab-ai');
 ---
 
-<Base sky>
-  <div class="home-frame">
-  <Header />
-  <main id="main" class="home-compact">
-    <Hero />
-    <section class="about section-shell" id="about">
-      <div class="about-copy">
-        <p class="eyebrow">A little about me</p>
+<Base description="Jeff Li, a Statistics and Machine Learning undergraduate at Carnegie Mellon. A few things I’m working on, learning, and enjoying.">
+  <div class="personal-home">
+    <Header illustrated />
+    <main id="main" class="personal-copy">
+      <div class="personal-reading">
+        <h1>Hi, I’m Jeff.</h1>
         <p>
-          I care about doing things well, and I tend to keep going until they
-          work. I like working with people who take the work seriously and leave
-          room for a laugh.
+          I’m an undergraduate at <em>Carnegie Mellon University</em>, studying{' '}
+          <strong><em>Statistics and Machine Learning</em></strong>, with minors in{' '}
+          <em>Artificial Intelligence</em> and <em>Philosophy</em>.
         </p>
         <p>
-          Away from the screen, you’ll find me playing soccer, wondering about
-          the <a href="https://digital-observatory.vercel.app/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; text-underline-offset: 4px;"><em>universe</em></a>, or taking things slowly in Stardew Valley. My music can
-          go from traditional Chinese melodies to hip-hop pretty quickly.
+          I enjoy building <a href="/projects/"><em>things</em></a>, working through challenging problems in{' '}
+          <a href="/research-and-coding/"><em>research and coding</em></a>, and sharing a laugh along the way.
         </p>
+        <section aria-labelledby="now-title">
+          <h2 id="now-title">Right now</h2>
+          {agentProject && (
+            <p>
+              I’m part of the Agent team at{' '}
+              <a href={`/projects/${agentProject.id}/`}><em>ScottyLabs AI</em></a>,
+              connecting AI applications with CMU campus data and services.
+              Along the way, I’m learning backend development, API integration,
+              and how to build real-life AI applications with a team.
+            </p>
+          )}
+          <p>
+            I’m also writing down what I’m learning.
+            {latestPost && (
+              <>{' '}Most recently:{' '}
+                <a href={`/blog/${latestPost.id}/`}><em>{latestPost.data.title}</em></a>.
+              </>
+            )}
+          </p>
+        </section>
+        <section aria-labelledby="interests-title">
+          <h2 id="interests-title">Away from the screen</h2>
+          <p>
+            You’ll find me playing soccer, wondering about the{' '}
+            <a href="https://digital-observatory.vercel.app/" target="_blank" rel="noopener noreferrer"><em>universe</em></a>,
+            or taking things slowly in <em>Stardew Valley</em>.
+          </p>
+          <p>
+            I also love <em>traveling</em>, partly because I’m a fan of <em>Laozi</em>!
+          </p>
+        </section>
+        <div class="personal-contact">
+          <SocialLinks />
+          <p class="personal-contact-note">
+            <span class="contact-pointer" aria-hidden="true">←</span>
+            You can contact me here.
+          </p>
+        </div>
       </div>
-      <div class="about-motto">
-        <h2>
-          Feet on the ground.
-          <br />
-          <em>Eyes on the <a href="https://zenodo.org/records/17355044" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; text-underline-offset: 4px;">stars</a>.</em>
-        </h2>
-      </div>
-    </section>
-
-
-  </main>
+    </main>
   </div>
 </Base>
