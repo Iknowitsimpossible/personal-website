@@ -100,13 +100,17 @@ html:has(.personal-home) { background: #faf9f6; }
 }
 .entry-list li:last-child { border-bottom: 1px solid var(--line); }
 .entry-date { font-size: 14px; line-height: 1.6; color: var(--muted); padding-top: 2px; }
-.entry-label {
+/* The small uppercase label above a title (date, category). The extra
+   .personal-reading raises specificity above the `.personal-reading p` text
+   rule, which otherwise makes a <p> label 17px and gray. */
+.personal-reading .entry-label {
   display: block;
   font-size: 11px;
+  line-height: 1.6;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 4px;
+  margin: 0 0 10px;
 }
 .personal-reading .entry-row h2 { font-size: 20px; line-height: 1.4; margin: 0; color: var(--heading); }
 .personal-reading .entry-summary { font-size: 15px; line-height: 1.6; margin: 4px 0 0; color: var(--muted); }
