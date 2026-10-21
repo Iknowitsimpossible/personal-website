@@ -2,9 +2,9 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import ProjectCover from '../../components/ProjectCover.astro';
 import GitHubIcon from '../../components/GitHubIcon.astro';
 import { getPublishedProjects } from '../../lib/projects';
+import '../../styles/personal-home.css';
 export async function getStaticPaths() {
   const projects = await getPublishedProjects();
   return projects.map((project) => ({
@@ -22,72 +22,57 @@ const { Content } = await render(project);
 const { data } = project;
 ---
 
-<Base title={`${data.title} — Jeff Li`} description={data.summary}>
-  <Header />
-  <main id="main" class="project-page section-shell" data-project={project.id}>
-    <a class="back-link" href="/projects/">
-      ← All projects
-    </a>
-    <header class="page-intro">
-      <p class="eyebrow">
-        {data.category} / {data.year}
-      </p>
-      <h1>{data.title}</h1>
-      <p class="project-deck">{data.summary}</p>
-      {data.sample && (
-        <p class="sample-notice">
-          Sample project — an illustrative concept, not a claim of completed
-          work.
-        </p>
-      )}
-    </header>
-    <ProjectCover project={project} eager />
-    <div class="project-story project-story-compact">
-      <article class="prose">
-        <Content />
-      </article>
+<Base title={`${data.title} — Jeff Li`} description={data.summary} preloadImage={data.cover?.src}>
+  <div class="personal-home">
+    <Header illustrated />
+    <main id="main" class="personal-copy" data-project={project.id}>
+      <article class="personal-reading detail-page">
+        <header class="detail-intro">
+          <p class="entry-label">
+            {data.category} · {data.year}
+          </p>
+          <h1>{data.title}</h1>
+          <p class="detail-deck">{data.summary}</p>
+          {data.sample && (
+            <p class="sample-notice">
+              Sample project — an illustrative concept, not a claim of completed
+              work.
+            </p>
+          )}
+        </header>
+        {data.cover && (
+          <div class:list={['detail-cover', { 'detail-cover-contained': data.cover.fit === 'contain' }]}>
+            <img src={data.cover.src} alt={data.cover.alt} width="1200" height="800" fetchpriority="high" />
+          </div>
+        )}
+        <div class="prose">
+          <Content />
+        </div>
         {(data.website || data.github) && (
-          <div class="project-outbound">
+          <p class="detail-links">
             {data.website && (
-              <a
-                class="outline-link"
-                href={data.website}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.websiteLabel ?? 'Visit website'} ↗
+              <a href={data.website} target="_blank" rel="noopener noreferrer">
+                {data.websiteLabel ?? 'Visit website'}
               </a>
             )}
             {data.github && (
-              <a
-                class="outline-link"
-                href={data.github}
-                aria-label="View on GitHub"
-                title="View on GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on <GitHubIcon />
+              <a href={data.github} target="_blank" rel="noopener noreferrer">
+                <GitHubIcon /> View on GitHub
               </a>
             )}
-          </div>
+          </p>
         )}
-    </div>
-    {data.gallery.length > 0 && (
-      <section class="project-gallery" aria-label="Project images">
-        {data.gallery.map((image) => (
-          <figure>
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            {image.caption && <figcaption>{image.caption}</figcaption>}
-          </figure>
-        ))}
-      </section>
-    )}
-
-  </main>
+        {data.gallery.length > 0 && (
+          <section class="detail-gallery" aria-label="Project images">
+            {data.gallery.map((image) => (
+              <figure>
+                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                {image.caption && <figcaption>{image.caption}</figcaption>}
+              </figure>
+            ))}
+          </section>
+        )}
+      </article>
+    </main>
+  </div>
 </Base>

@@ -4,7 +4,7 @@ coverTitle: ScottyLabs AI
 cover:
   src: /images/projects/scottylabs-wordmark.png
   alt: Black ScottyLabs dog outline and wordmark on a white background.
-  fit: cover
+  fit: contain
 summary: Connecting AI applications with campus data and services at Carnegie Mellon University.
 category: AI Applications
 year: 2026

@@ -125,3 +125,73 @@ html:has(.personal-home) { background: #faf9f6; }
    and leave room so the last row ends above the ridge. */
 .has-sky .personal-home { background: transparent; }
 .has-sky .personal-home .personal-copy { padding-bottom: calc(min(170px, 17vh) + 40px); }
+
+/* Project and post pages: the same reading column, with the Markdown body
+   (.prose) restyled from the old serif look to the homepage's sans. */
+.detail-intro { margin-bottom: 32px; }
+.personal-reading .detail-intro h1 { margin-bottom: 14px; }
+.personal-reading .detail-deck { font-size: 19px; line-height: 1.6; color: var(--muted); margin: 0; }
+.personal-reading .sample-notice {
+  margin-top: 18px;
+  padding-left: 14px;
+  border-left: 2px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+.detail-cover {
+  margin: 0 0 36px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.detail-cover img { width: 100%; height: auto; }
+/* Logos sit small and centered on white instead of filling the frame. */
+.detail-cover-contained { position: relative; aspect-ratio: 2 / 1; background: #fff; }
+.detail-cover-contained img {
+  position: absolute;
+  inset: 14% 0;
+  width: 100%;
+  height: 72%;
+  object-fit: contain;
+}
+.detail-cover-image { width: 100%; height: auto; margin-top: 28px; border-radius: 6px; }
+
+.personal-home .prose { max-width: none; }
+.personal-home .prose h2 {
+  font: 600 23px/1.4 var(--sans);
+  letter-spacing: -.025em;
+  color: var(--ink);
+  margin: 40px 0 14px;
+}
+.personal-home .prose h2:first-child { margin-top: 0; }
+.personal-home .prose h3 {
+  font: 600 18px/1.45 var(--sans);
+  color: var(--ink);
+  margin: 30px 0 10px;
+}
+.personal-home .prose li { font-size: 17px; line-height: 1.9; color: var(--body); }
+.personal-home .prose li a,
+.personal-home .prose li a:visited {
+  color: var(--accent);
+  text-decoration-color: #7792a580;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.personal-home .prose pre,
+.personal-home .prose pre.astro-code { background: #f1efea !important; border-radius: 6px; }
+.personal-home .prose code { background: #f1efea; border-radius: 3px; }
+.personal-home .prose pre code { background: transparent; }
+
+.personal-reading .detail-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 32px; }
+.detail-links a { display: inline-flex; align-items: center; gap: 8px; }
+.detail-links svg { width: 17px; height: 17px; }
+
+.detail-gallery { margin-top: 40px; display: grid; gap: 28px; }
+.detail-gallery figure { margin: 0; }
+.detail-gallery img { width: 100%; height: auto; border-radius: 6px; }
+.detail-gallery figcaption { font-size: 14px; color: var(--muted); padding-top: 10px; }
+@media (max-width: 600px) {
+  .personal-reading .detail-deck { font-size: 17px; }
+  .personal-home .prose h2 { font-size: 21px; }
+  .personal-home .prose li { font-size: 16px; line-height: 1.85; }
+}
