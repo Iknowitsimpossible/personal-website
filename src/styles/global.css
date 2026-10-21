@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400;1,500&display=swap');
 :root {
   --paper: #f0f5fa;
   --ink: #29445f;
   --muted: #59718a;
   --line: #d3dfea;
   --accent: #426b91;
-  --serif: 'Newsreader', Georgia, serif;
   --sans: 'DM Sans', Arial, sans-serif;
   color-scheme: light;
   font-family: var(--sans);
@@ -62,18 +61,6 @@ h2,
 h3 {
   font-weight: 400;
 }
-h1,
-h2 {
-  font-family: var(--serif);
-  line-height: 1.14;
-  letter-spacing: -0.025em;
-}
-h1 {
-  font-size: clamp(3.3rem, 6.1vw, 6.2rem);
-}
-h2 {
-  font-size: clamp(2.5rem, 4.2vw, 4.3rem);
-}
 em {
   font-weight: 400;
 }
@@ -108,7 +95,6 @@ button[hidden],
   left: 0;
 }
 .wordmark {
-  font-family: var(--serif);
   font-size: 1.55rem;
   line-height: 1.25;
   letter-spacing: -0.035em;
