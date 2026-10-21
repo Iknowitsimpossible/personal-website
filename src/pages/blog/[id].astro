@@ -2,7 +2,7 @@
 import { render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import { categoryLabels, formatPostDate, getPublishedPosts } from '../../lib/posts';
+import { formatPostDate, getPublishedPosts } from '../../lib/posts';
 import '../../styles/personal-home.css';
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
@@ -26,7 +26,6 @@ const { data } = post;
       <article class="personal-reading detail-page post-page">
         <header class="detail-intro">
           <p class="entry-label">
-            {categoryLabels[data.category]} ·{' '}
             <time datetime={data.date.toISOString()}>{formatPostDate(data.date)}</time>
           </p>
           <h1>{data.title}</h1>
