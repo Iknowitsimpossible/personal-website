@@ -1,6 +1,6 @@
 # Personal Website
 
-Personal website of Jinfan (Jeff) Li, a Carnegie Mellon University undergraduate. Built with Astro and TypeScript to share projects, experiences, and interests.
+Personal website of me, a Carnegie Mellon University undergraduate. Built with Astro and TypeScript to share about myself
 
 ## Development
 
