@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/chakra-petch/semibold.ttf') format('truetype');
+}
 /* The warm palette for pages wrapped in .personal-home. These override the
    blue tokens from global.css, so shared styles (lists, links) pick them up. */
 .personal-home {
@@ -8,6 +15,7 @@
   --muted: #677078;
   --line: #e6e3dc;
   --accent: #3e617b;
+  --display: 'Chakra Petch', var(--sans);
   min-height: 100svh;
   background: var(--paper);
   color: var(--ink);
