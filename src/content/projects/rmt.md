@@ -2,9 +2,9 @@
 title: RMT — Rate My Teacher
 coverTitle: RMT
 cover:
-  src: /images/projects/rmt-wordmark.svg
-  alt: The Rate My Teacher wordmark, "Rate my" on a dark block joined to "Teacher" on white.
-  fit: contain
+  src: /images/projects/rmt-banner.svg
+  alt: The Rate My Teacher wordmark in white on a navy, blue, and teal gradient.
+  fit: cover
 summary: A teacher-review platform for BIPH students (my high school) to share about their opinions.
 category: Web Application
 year: 2025
