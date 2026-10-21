@@ -2,7 +2,7 @@
 title: ScottyLabs AI Agent Development
 coverTitle: ScottyLabs AI
 cover:
-  src: /images/projects/scottylabs-banner.webp
+  src: /images/projects/scottylabs-banner.svg
   alt: The ScottyLabs dog outline and wordmark in white on a purple, blue, and pink gradient.
   fit: cover
 summary: Connecting AI applications with campus data and services at Carnegie Mellon University.
