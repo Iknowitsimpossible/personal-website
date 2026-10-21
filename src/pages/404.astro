@@ -1,20 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
+import '../styles/personal-home.css';
 ---
 
 <Base title="A little off the path — Jeff Li">
-  <Header />
-  <main id="main" class="section-shell not-found">
-    <p class="eyebrow">404 / A little off the path</p>
-    <h1>
-      Let’s find our
-      <br />
-      <em>way back.</em>
-    </h1>
-    <p>This page isn’t here, but the hillside is right where you left it.</p>
-    <a class="outline-link" href="/">
-      Back to the hillside ↗
-    </a>
-  </main>
+  <div class="personal-home">
+    <Header illustrated />
+    <main id="main" class="personal-copy">
+      <div class="personal-reading">
+        <p class="entry-label">404 · A little off the path</p>
+        <h1>Let’s find our way back.</h1>
+        <p>
+          This page isn’t here, but the hillside is right where you left it.{' '}
+          <a href="/">Back to the hillside</a>.
+        </p>
+      </div>
+    </main>
+  </div>
 </Base>
