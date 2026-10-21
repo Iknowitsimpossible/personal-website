@@ -2,16 +2,54 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import '../styles/personal-home.css';
+
+// One entry per paper, newest first. `me` is bolded in the author line.
+const me = 'Jinfan Li';
+const papers = [
+  {
+    title: 'Multi-band Photometric Analysis of the NSVS 3564994 Variable Star',
+    authors: ['Jinfan Li'],
+    supervisor: 'Yong Zhao',
+    venue: 'Preprint, Zenodo, 2025',
+    links: [
+      { label: 'Paper', href: 'https://zenodo.org/records/17355044' },
+    ],
+  },
+];
 ---
 
-<Base title="Research and coding — Jeff Li" description="A space for Jeff Li’s research and coding notes. More to come.">
+<Base title="Research — Jeff Li" description="Jeff Li’s research in machine learning and astrophysics.">
   <div class="personal-home">
     <Header illustrated />
     <main id="main" class="personal-copy">
       <div class="personal-reading">
-        <h1>Research and coding</h1>
-        <p>More to come.</p>
-        <p><a href="/">Back to home</a></p>
+        <h1>Research</h1>
+        <section aria-labelledby="papers-title">
+          <h2 id="papers-title">Papers</h2>
+          <ol class="paper-list">
+            {papers.map((paper) => (
+              <li>
+                <h3>{paper.title}</h3>
+                <p class="paper-meta">
+                  {paper.authors.map((author, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      {author === me ? <strong>{author}</strong> : author}
+                    </>
+                  ))}
+                  {paper.supervisor && <>{' '}· Supervised by {paper.supervisor}</>}
+                  <br />
+                  {paper.venue}
+                </p>
+                <p class="paper-links">
+                  {paper.links.map(({ label, href }) => (
+                    <a href={href} target="_blank" rel="noopener noreferrer">{label}</a>
+                  ))}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
       </div>
     </main>
   </div>

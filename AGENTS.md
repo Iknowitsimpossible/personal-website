@@ -36,15 +36,21 @@
 
 - `src/layouts/Base.astro` wraps every page. Pass `sky` to draw the animated night
   sky (`src/components/NightSky.astro`), or `sky="hills"` for only the still hills
-  with the telescope and laptop (the blog list uses this). Detail pages stay plain.
-- The home page and the Work and Blog lists share one plain reading style:
+  with the telescope and laptop (the blog list uses this). Other pages have no sky.
+- The home page, the Work and Blog lists, and every project and post page share
+  one plain reading style:
   wrap the page in `.personal-home` and import `src/styles/personal-home.css`.
   It sets warm color tokens (paper `#faf9f6`, ink `#303a42`, accent `#3e617b`)
   that override the blue ones below, sans headings, and a 680px reading column.
-  Detail pages still use the blue tokens and serif headings.
+  Project and post pages use it too; `.prose` styles their Markdown body there.
+  So does the 404 page, so the blue tokens and serif headings below are no
+  longer used by any page.
   `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
   (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
   "Enrichyouenergy" on every page.
+- The research page (`src/pages/research-and-coding.astro`, linked from the
+  homepage's "ML and astrophysics") lists papers from the `papers` array at the
+  top of the file. Add a paper there; `me` is bolded in the author line.
 - Sky details: stars skip text, real constellations form around the cursor (data in
   `src/scripts/constellations.ts`), and hills with a telescope and laptop sit at the
   bottom of the page. Reduced motion gets a still frame.
@@ -57,7 +63,7 @@
   `src/content.config.ts`); start from `docs/templates/post.md`. Each post has one
   `category`: `reflection`, `project-log`, or `concepts-explained` (display labels
   live in `src/lib/posts.ts`). `draft` defaults to `true`. `/blog/` is a dated text
-  list, newest first, with the hills; post pages stay plain like project pages.
+  list, newest first, with the hills.
 
 ## Deploying
 

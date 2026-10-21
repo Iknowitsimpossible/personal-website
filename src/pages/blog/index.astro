@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import { categoryLabels, formatPostDate, getPublishedPosts } from '../../lib/posts';
+import { formatPostDate, getPublishedPosts } from '../../lib/posts';
 import '../../styles/personal-home.css';
 const posts = await getPublishedPosts();
 ---
@@ -23,7 +23,6 @@ const posts = await getPublishedPosts();
                 {formatPostDate(post.data.date, 'short')}
               </time>
               <a class="entry-row" href={`/blog/${post.id}/`}>
-                <span class="entry-label">{categoryLabels[post.data.category]}</span>
                 <h2>{post.data.title}</h2>
               </a>
             </li>

@@ -2,8 +2,8 @@
 title: RMT — Rate My Teacher
 coverTitle: RMT
 cover:
-  src: /images/projects/rmt-cover.svg
-  alt: Original Rate My Teacher cover with a black-and-white wordmark on charcoal, and the line Classroom experiences, shared.
+  src: /images/projects/rmt-banner.svg
+  alt: The Rate My Teacher wordmark in white on a navy, blue, and teal gradient.
   fit: cover
 summary: A teacher-review platform for BIPH students (my high school) to share about their opinions.
 category: Web Application

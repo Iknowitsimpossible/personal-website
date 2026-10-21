@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1446" height="470" viewBox="0 0 1446 470" fill="none">
+  <title>Rate My Teacher</title>
+  <desc>The Rate My Teacher wordmark in white on a navy, blue, and teal gradient.</desc>
+  <defs>
+    <linearGradient id="base" x1="0" y1="0.2" x2="1" y2="0.8">
+      <stop offset="0" stop-color="#132a55" />
+      <stop offset="0.42" stop-color="#1f5596" />
+      <stop offset="0.76" stop-color="#1e93ad" />
+      <stop offset="1" stop-color="#5ccfbd" />
+    </linearGradient>
+    <radialGradient id="glow" cx="0.58" cy="0" r="0.5" gradientTransform="matrix(1 0 0 3.08 0 0)">
+      <stop offset="0" stop-color="#a6ecff" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#a6ecff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1446" height="470" fill="url(#base)" />
+  <rect width="1446" height="470" fill="url(#glow)" />
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-weight="700" font-size="58" letter-spacing="9" text-anchor="middle" dominant-baseline="central">
+    <rect x="343" y="170" width="380" height="130" fill="#fff" />
+    <rect x="343" y="170" width="760" height="130" stroke="#fff" stroke-width="4" />
+    <text x="537" y="236" fill="#132a55">RATE MY</text>
+    <text x="917" y="236" fill="#fff">TEACHER</text>
+  </g>
+</svg>
