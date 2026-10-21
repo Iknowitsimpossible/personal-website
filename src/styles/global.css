@@ -89,11 +89,6 @@ button[hidden],
   position: relative;
   z-index: 5;
 }
-.header-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .wordmark {
   font-size: 1.55rem;
   line-height: 1.25;
