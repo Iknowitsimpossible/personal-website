@@ -48,6 +48,9 @@
   `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
   (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
   "Enrichyouenergy" on every page.
+- The research page (`src/pages/research-and-coding.astro`, linked from the
+  homepage's "ML and astrophysics") lists papers from the `papers` array at the
+  top of the file. Add a paper there; `me` is bolded in the author line.
 - Sky details: stars skip text, real constellations form around the cursor (data in
   `src/scripts/constellations.ts`), and hills with a telescope and laptop sit at the
   bottom of the page. Reduced motion gets a still frame.
