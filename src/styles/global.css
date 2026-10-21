@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
 :root {
   --paper: #f0f5fa;
   --ink: #29445f;
@@ -890,6 +890,7 @@ html[data-motion='off'] .has-image img {
 .collection-grid .has-image img,
 .collection-grid .project-link:hover .has-image img { transform: none; transition: none; }
 
+.wordmark em { font-weight: inherit; }
 .site-header .wordmark { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
 .site-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 @media (max-width: 380px) { .site-logo { width: 36px; height: 36px; } }
@@ -939,7 +940,7 @@ html[data-motion='off'] .has-image img {
   .home-frame .home-compact .about { padding: 20px 24px 40px; }
 }
 
-/* Night sky behind the home page and the projects list (see NightSky.astro).
+/* Night sky behind sky pages; the blog list shows only its hills (see NightSky.astro).
    z-index -1 paints it above the root's paper color but below everything
    else, so the page sections over it must stay transparent. */
 .night-sky {
@@ -961,11 +962,6 @@ html[data-motion='off'] .has-image img {
 
 /* Projects list: the same 820px column as the homepage, with a compact grid
    that fills 3 → 2 → 1 columns and stays tidy as more projects are added. */
-.has-sky .site-header {
-  max-width: 820px;
-  margin-inline: auto;
-  padding: 28px;
-}
 .collection-page {
   max-width: 820px;
   margin-inline: auto;
@@ -1002,56 +998,12 @@ html[data-motion='off'] .has-image img {
   margin-bottom: 0;
 }
 @media (max-width: 600px) {
-  .has-sky .site-header,
   .collection-page {
     padding-left: 24px;
     padding-right: 24px;
   }
 }
-/* Blog: a quiet text list on /blog/ and a single reading column per post. */
-.post-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.post-list li {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 24px;
-  padding: 26px 0;
-  border-top: 1px solid var(--line);
-}
-.post-list li:last-child {
-  border-bottom: 1px solid var(--line);
-}
-.post-list time {
-  font-size: 0.85rem;
-  color: var(--muted);
-  padding-top: 4px;
-}
-.post-row {
-  text-decoration: none;
-}
-.post-category {
-  display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #2563a6;
-  margin-bottom: 4px;
-}
-.post-row h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.45rem;
-  line-height: 1.25;
-  margin: 0;
-}
-.post-row:hover h2 {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
-}
+/* Blog post pages: a single reading column. */
 .post-page .page-intro h1 {
   margin-bottom: 20px;
 }
@@ -1089,14 +1041,4 @@ html[data-motion='off'] .has-image img {
   width: 72%;
   height: 72%;
   object-fit: contain;
-}
-@media (max-width: 600px) {
-  .post-list li {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 22px 0;
-  }
-  .post-list time {
-    padding-top: 0;
-  }
 }

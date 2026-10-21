@@ -35,10 +35,13 @@
 ## How pages are built
 
 - `src/layouts/Base.astro` wraps every page. Pass `sky` to draw the animated night
-  sky (`src/components/NightSky.astro`); the projects list and blog list use it,
-  while detail pages stay plain.
-- The home page (`src/pages/index.astro`) is a plain reading page styled by
-  `src/styles/personal-home.css` (warm paper `#faf9f6`, sans headings, no sky).
+  sky (`src/components/NightSky.astro`), or `sky="hills"` for only the still hills
+  with the telescope and laptop (the blog list uses this). Detail pages stay plain.
+- The home page and the Work and Blog lists share one plain reading style:
+  wrap the page in `.personal-home` and import `src/styles/personal-home.css`.
+  It sets warm color tokens (paper `#faf9f6`, ink `#303a42`, accent `#3e617b`)
+  that override the blue ones below, sans headings, and a 680px reading column.
+  Detail pages still use the blue tokens and serif headings.
   `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
   (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
   "Enrichyouenergy" on every page.
@@ -47,14 +50,14 @@
   bottom of the page. Reduced motion gets a still frame.
 - Projects are Markdown files in `src/content/projects/`, validated by the schema in
   `src/content.config.ts`; start from `docs/templates/project.md`. `draft` defaults
-  to `true`, so set `draft: false` to publish. The projects list is an auto-fill grid
-  (3, then 2, then 1 columns), so new projects need no layout changes.
+  to `true`, so set `draft: false` to publish. The projects list is a dated text list
+  (year, category, title, summary), so new projects need no layout changes.
 
 - Blog posts are Markdown files in `src/content/posts/` (schema in
   `src/content.config.ts`); start from `docs/templates/post.md`. Each post has one
   `category`: `reflection`, `project-log`, or `concepts-explained` (display labels
   live in `src/lib/posts.ts`). `draft` defaults to `true`. `/blog/` is a dated text
-  list, newest first, with the sky; post pages stay plain like project pages.
+  list, newest first, with the hills; post pages stay plain like project pages.
 
 ## Deploying
 

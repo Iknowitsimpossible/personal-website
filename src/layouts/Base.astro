@@ -5,8 +5,8 @@ interface Props {
   title?: string;
   description?: string;
   preloadImage?: string;
-  /** Draw the night sky behind the page. */
-  sky?: boolean;
+  /** Draw the night sky behind the page, or only the hills at its bottom. */
+  sky?: boolean | 'hills';
 }
 const {
   preloadImage,
@@ -30,7 +30,7 @@ const {
     <title>{title}</title>
   </head>
   <body class:list={{ 'has-sky': sky }}>
-    {sky && <NightSky />}
+    {sky && <NightSky hillsOnly={sky === 'hills'} />}
     <a class="skip-link" href="#main">
       Skip to content
     </a>

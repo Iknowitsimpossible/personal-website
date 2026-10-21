@@ -1,34 +1,40 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
 import { getPublishedProjects } from '../../lib/projects';
+import '../../styles/personal-home.css';
 const projects = await getPublishedProjects();
 ---
 
 <Base
-  sky
   title="Projects and Experiences — Jeff Li"
-  preloadImage={projects[0]?.data.cover?.src}
   description="A growing collection of projects, experiments, and lessons learned."
 >
-  <Header />
-  <main id="main" class="collection-page section-shell">
-    <a class="back-link" href="/">
-      ← Back to main page
-    </a>
-    <header class="page-intro">
-      <h1>Projects and Experiences</h1>
-    </header>
-    <div class="collection-grid">
-      {projects.map((project, index) => (
-        <ProjectCard project={project} index={index} eager={index === 0} animate={false} showSummary={false} />
-      ))}
-    </div>
-    {projects.length === 0 && (
-      <p class="empty-state">
-        The collection is still growing. Check back soon.
-      </p>
-    )}
-  </main>
+  <div class="personal-home">
+    <Header illustrated />
+    <main id="main" class="personal-copy">
+      <div class="personal-reading">
+        <h1>Projects and experiences</h1>
+        <ol class="entry-list">
+          {projects.map((project) => (
+            <li>
+              <span class="entry-date">
+                {project.data.sample ? 'Sample' : project.data.year}
+              </span>
+              <a class="entry-row" href={`/projects/${project.id}/`}>
+                <span class="entry-label">{project.data.category}</span>
+                <h2>{project.data.title}</h2>
+                <p class="entry-summary">{project.data.summary}</p>
+              </a>
+            </li>
+          ))}
+        </ol>
+        {projects.length === 0 && (
+          <p class="empty-state">
+            The collection is still growing. Check back soon.
+          </p>
+        )}
+      </div>
+    </main>
+  </div>
 </Base>
