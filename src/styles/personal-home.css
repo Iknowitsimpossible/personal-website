@@ -5,12 +5,23 @@
   font-display: swap;
   src: url('/fonts/chakra-petch/semibold.ttf') format('truetype');
 }
+/* The warm palette for pages wrapped in .personal-home. These override the
+   blue tokens from global.css, so shared styles (lists, links) pick them up. */
 .personal-home {
+  --paper: #faf9f6;
+  --ink: #303a42;
+  --heading: #27333c;
+  --body: #424c54;
+  --muted: #677078;
+  --line: #e6e3dc;
+  --accent: #3e617b;
   --display: 'Chakra Petch', var(--sans);
   min-height: 100svh;
-  background: #faf9f6;
-  color: #303a42;
+  background: var(--paper);
+  color: var(--ink);
 }
+/* Paint the whole canvas warm, so overscroll never flashes the blue paper. */
+html:has(.personal-home) { background: #faf9f6; }
 .personal-home > .site-header,
 .personal-home .personal-copy {
   width: calc(100% - 56px);
@@ -30,14 +41,14 @@
   font: 550 34px/1.3 var(--sans);
   letter-spacing: -.04em;
   margin: 0 0 26px;
-  color: #27333c;
+  color: var(--heading);
 }
-.personal-reading p { font: 400 17px/1.9 var(--sans); margin: 0 0 18px; color: #424c54; }
-.personal-reading strong { font-weight: 550; color: #303a42; }
+.personal-reading p { font: 400 17px/1.9 var(--sans); margin: 0 0 18px; color: var(--body); }
+.personal-reading strong { font-weight: 550; color: var(--ink); }
 .personal-reading section { margin-top: 34px; }
-.personal-reading h2 { font: 600 23px/1.4 var(--sans); letter-spacing: -.025em; margin: 0 0 14px; color: #303a42; }
+.personal-reading h2 { font: 600 23px/1.4 var(--sans); letter-spacing: -.025em; margin: 0 0 14px; color: var(--ink); }
 .personal-reading p a {
-  color: #3e617b;
+  color: var(--accent);
   text-decoration: underline;
   text-decoration-color: #7792a580;
   text-underline-offset: 4px;
@@ -46,11 +57,11 @@
 .personal-reading p a:hover { color: #243f54; text-decoration-color: currentColor; }
 .personal-home a:focus-visible { outline: 2px solid #426b91; outline-offset: 5px; }
 .personal-contact { margin-top: 26px; display: flex; align-items: center; gap: 14px; }
-.personal-reading .personal-contact-note { margin: 0; font-size: 13px; line-height: 1.6; color: #677078; }
+.personal-reading .personal-contact-note { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
 .contact-pointer { display: inline-block; margin-right: 5px; }
 .personal-home .social-links { gap: 12px; margin: 0; }
-.personal-home .social-links a { width: 34px; height: 34px; color: #677078; background: transparent; }
-.personal-home .social-links a:hover { color: #303a42; background: #ecebe6; }
+.personal-home .social-links a { width: 34px; height: 34px; color: var(--muted); background: transparent; }
+.personal-home .social-links a:hover { color: var(--ink); background: #ecebe6; }
 .personal-home .social-links svg { width: 19px; height: 19px; }
 @media (max-width: 600px) {
   .personal-home > .site-header,
