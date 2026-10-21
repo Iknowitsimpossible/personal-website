@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,450;0,500;0,550;0,600;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap');
 :root {
   --paper: #f0f5fa;
   --ink: #29445f;
@@ -890,6 +890,7 @@ html[data-motion='off'] .has-image img {
 .collection-grid .has-image img,
 .collection-grid .project-link:hover .has-image img { transform: none; transition: none; }
 
+.wordmark em { font-weight: inherit; }
 .site-header .wordmark { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; }
 .site-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 @media (max-width: 380px) { .site-logo { width: 36px; height: 36px; } }
