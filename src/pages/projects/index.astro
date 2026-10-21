@@ -14,7 +14,7 @@ const projects = await getPublishedProjects();
     <Header illustrated />
     <main id="main" class="personal-copy">
       <div class="personal-reading">
-        <h1>Projects and experiences</h1>
+        <h1>Some Interesting Projects I’ve Worked On</h1>
         <ol class="entry-list">
           {projects.map((project) => (
             <li>
@@ -22,7 +22,6 @@ const projects = await getPublishedProjects();
                 {project.data.sample ? 'Sample' : project.data.year}
               </span>
               <a class="entry-row" href={`/projects/${project.id}/`}>
-                <span class="entry-label">{project.data.category}</span>
                 <h2>{project.data.title}</h2>
                 <p class="entry-summary">{project.data.summary}</p>
               </a>
