@@ -88,3 +88,40 @@ html:has(.personal-home) { background: #faf9f6; }
   .personal-contact { flex-direction: column; align-items: flex-start; gap: 8px; }
   .contact-pointer { transform: rotate(90deg); }
 }
+
+/* Work and Blog lists: dated rows in the same reading column as the homepage. */
+.entry-list { list-style: none; margin: 0; padding: 0; }
+.entry-list li {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.entry-list li:last-child { border-bottom: 1px solid var(--line); }
+.entry-date { font-size: 14px; line-height: 1.6; color: var(--muted); padding-top: 2px; }
+.entry-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.personal-reading .entry-row h2 { font-size: 20px; line-height: 1.4; margin: 0; color: var(--heading); }
+.personal-reading .entry-summary { font-size: 15px; line-height: 1.6; margin: 4px 0 0; color: var(--muted); }
+.entry-row:hover h2 {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted);
+}
+@media (max-width: 600px) {
+  .entry-list li { grid-template-columns: 1fr; gap: 2px; padding: 18px 0; }
+  .entry-date { padding-top: 0; }
+}
+
+/* The blog list keeps the night sky's hills: let them show through the page,
+   and leave room so the last row ends above the ridge. */
+.has-sky .personal-home { background: transparent; }
+.has-sky .personal-home .personal-copy { padding-bottom: calc(min(170px, 17vh) + 40px); }
