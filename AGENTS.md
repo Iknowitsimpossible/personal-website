@@ -23,14 +23,20 @@
 
 ## Design system
 
-- Colors are tokens in `src/styles/global.css` `:root`: paper `#f0f5fa`, ink `#29445f`,
-  muted `#59718a`, line `#d3dfea`, accent `#426b91`. The night sky adds a warm gold
-  (`201, 146, 52`) and sage-green hills (`104, 146, 112`) in `src/scripts/night-sky.ts`.
-- Fonts: Newsreader for headings (`--serif`), DM Sans for body text (`--sans`).
-- Pages use one centered 820px column with 28px side padding (24px on phones), so
-  the header and content line up across pages.
+- Every page is wrapped in `.personal-home` and styled by `src/styles/personal-home.css`,
+  which defines the warm palette as tokens: paper `#faf9f6`, ink `#303a42`, heading
+  `#27333c`, body `#424c54`, muted `#677078`, line `#e6e3dc`, accent `#3e617b`.
+  `src/styles/global.css` holds only the shared base: element resets, header,
+  Markdown `.prose`, social icons and the night sky. Its `:root` still has older blue
+  fallback tokens, which `.personal-home` overrides.
+- Font: DM Sans (`--sans`) for everything, headings included; weights 550-600 give
+  headings their emphasis. The wordmark is DM Sans too.
+- Layout: a centered 820px column (28px side padding, 24px on phones) holds the header
+  and content, and text sits in a 680px reading column (`.personal-reading`), so the
+  header and content line up across pages.
 - Calm and minimal: no footer, no decorative arrows. Contact links are the icon row
-  in `src/components/SocialLinks.astro`.
+  in `src/components/SocialLinks.astro`. The night sky adds a warm gold
+  (`201, 146, 52`) and sage-green hills (`104, 146, 112`) in `src/scripts/night-sky.ts`.
 
 ## How pages are built
 
@@ -40,11 +46,9 @@
 - The home page, the Work and Blog lists, and every project and post page share
   one plain reading style:
   wrap the page in `.personal-home` and import `src/styles/personal-home.css`.
-  It sets warm color tokens (paper `#faf9f6`, ink `#303a42`, accent `#3e617b`)
-  that override the blue ones below, sans headings, and a 680px reading column.
+  It sets the warm color tokens, sans headings, and the 680px reading column.
   Project and post pages use it too; `.prose` styles their Markdown body there.
-  So does the 404 page, so the blue tokens and serif headings below are no
-  longer used by any page.
+  So does the 404 page.
   `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
   (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
   "Enrichyouenergy" on every page.
