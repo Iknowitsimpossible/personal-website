@@ -1,5 +1,5 @@
 ---
-title: AI Agent Development
+title: ScottyLabs AI Agent Development
 coverTitle: ScottyLabs AI
 cover:
   src: /images/projects/scottylabs-banner.webp
