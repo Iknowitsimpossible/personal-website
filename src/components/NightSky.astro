@@ -4,13 +4,18 @@
  * depth layers, a few bright glinting stars, shooting stars, and two hills
  * with a telescope and a laptop set up on the ridge.
  * Decorative only, so it is hidden from screen readers.
+ * `hillsOnly` keeps just the still hills, telescope, and laptop.
  */
+interface Props {
+  hillsOnly?: boolean;
+}
+const { hillsOnly = false } = Astro.props;
 ---
 
-<canvas class="night-sky" aria-hidden="true"></canvas>
+<canvas class="night-sky" aria-hidden="true" data-hills-only={hillsOnly ? '' : undefined}></canvas>
 
 <script>
   import { startNightSky } from '../scripts/night-sky';
   const canvas = document.querySelector<HTMLCanvasElement>('.night-sky');
-  if (canvas) startNightSky(canvas);
+  if (canvas) startNightSky(canvas, { hillsOnly: canvas.hasAttribute('data-hills-only') });
 </script>

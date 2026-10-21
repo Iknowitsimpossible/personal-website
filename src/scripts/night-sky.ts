@@ -6,6 +6,7 @@
  * into view under the last section instead of covering text along the way. Stars sit in three depth layers: nearer layers move more with the
  * mouse and scroll (parallax), which is what makes the sky feel deep.
  * Reduced motion draws a single still frame; hidden tabs stop the loop.
+ * With `hillsOnly`, only the hills and their props are drawn, always still.
  */
 
 import { CONSTELLATIONS, projectConstellation } from './constellations';
@@ -46,12 +47,18 @@ interface ShootingStar {
   life: number; // 1 → 0
 }
 
-export function startNightSky(canvas: HTMLCanvasElement) {
+export function startNightSky(canvas: HTMLCanvasElement, { hillsOnly = false } = {}) {
   const context = canvas.getContext('2d');
   if (!context) return;
   const ctx = context;
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Hills-only pages never animate, so they follow the reduced-motion path.
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const reducedMotion = {
+    get matches() {
+      return hillsOnly || motionQuery.matches;
+    },
+  };
   const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
   let width = 0;
@@ -473,9 +480,11 @@ export function startNightSky(canvas: HTMLCanvasElement) {
   function draw(time: number) {
     measureGround();
     ctx.clearRect(0, 0, width, height);
-    drawStars(time);
-    drawBrightStars(time);
-    drawConstellations(time);
+    if (!hillsOnly) {
+      drawStars(time);
+      drawBrightStars(time);
+      drawConstellations(time);
+    }
     drawHill(backRidge, 0.12);
     drawHill(frontRidge, 0.2);
     drawOnRidge(0.765, drawTelescope);
@@ -513,7 +522,7 @@ export function startNightSky(canvas: HTMLCanvasElement) {
 
   window.addEventListener('resize', resize);
   window.addEventListener('pointermove', (event) => {
-    if (event.pointerType !== 'mouse') return;
+    if (hillsOnly || event.pointerType !== 'mouse') return;
     mouse.x = event.clientX;
     mouse.y = event.clientY;
     mouse.active = true;
@@ -529,6 +538,7 @@ export function startNightSky(canvas: HTMLCanvasElement) {
   // Clicking empty sky sends a shooting star from that spot. Touch screens
   // can't hover, so a tap there also draws a constellation.
   window.addEventListener('click', (event) => {
+    if (hillsOnly) return;
     if ((event.target as Element).closest('a, button, input, textarea, select')) return;
     if (window.getSelection()?.toString()) return;
     if (coarsePointer) revealConstellationAt(event.clientX, event.clientY);
@@ -545,7 +555,7 @@ export function startNightSky(canvas: HTMLCanvasElement) {
     { passive: true },
   );
   document.addEventListener('visibilitychange', start);
-  reducedMotion.addEventListener('change', start);
+  motionQuery.addEventListener('change', start);
 
   resize();
   start();
