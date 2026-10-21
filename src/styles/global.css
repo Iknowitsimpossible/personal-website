@@ -162,10 +162,6 @@ button[hidden],
     transition: none !important;
   }
 }
-/* motion.ts sets data-motion="off" on <html> when motion is paused. */
-html[data-motion='off'] {
-  scroll-behavior: auto;
-}
 
 /* Markdown body of project and post pages. personal-home.css restyles the
    headings, list items and code colors on top of this. */
