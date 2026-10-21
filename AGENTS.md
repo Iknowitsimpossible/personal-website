@@ -3,7 +3,8 @@
 - Keep all website content and repository documentation in English.
 - GitHub Pages is the deployment target. Push changes to `main` to trigger
   `.github/workflows/deploy.yml`. Do not watch the Actions run or check the
-  live site after pushing; Jeff checks deploys.
+  live site after pushing; Jeff checks deploys. (A run takes a couple of minutes,
+  and GitHub's CDN can serve the old page for up to 10 minutes.)
 - Do not publish changes through OpenAI Sites. The existing `.openai/hosting.json`
   identifies the previous host and is retained until the old setup is removed.
 - Always pull the latest `main` before editing; other assistants also update this
@@ -11,6 +12,7 @@
 - Validate changes with `npm run build` before pushing.
 - Production domain: `https://jinfanli.com`. Cloudflare manages DNS (records are
   DNS only, pointing at GitHub Pages); GitHub Pages issues the HTTPS certificate.
+- Jeff's manual to-dos (DNS, old hosts) live in `TODO.md`. Do not act on them.
 
 ## Working with Jeff
 
@@ -29,8 +31,9 @@
   `src/styles/global.css` holds only the shared base: element resets, header,
   Markdown `.prose`, social icons and the night sky. Its `:root` still has older blue
   fallback tokens, which `.personal-home` overrides.
-- Font: DM Sans (`--sans`) for everything, headings included; weights 550-600 give
-  headings their emphasis. The wordmark is DM Sans too.
+- Fonts: DM Sans (`--sans`) for text, headings and the wordmark; weights 550-600 give
+  headings their emphasis. The one exception is Chakra Petch (`--display`), used only
+  for the Work and Blog labels in `src/components/NavigationArtwork.astro`.
 - Layout: a centered 820px column (28px side padding, 24px on phones) holds the header
   and content, and text sits in a 680px reading column (`.personal-reading`), so the
   header and content line up across pages.
@@ -43,39 +46,23 @@
 - `src/layouts/Base.astro` wraps every page. Pass `sky` to draw the animated night
   sky (`src/components/NightSky.astro`), or `sky="hills"` for only the still hills
   with the telescope and laptop (the blog list uses this). Other pages have no sky.
-- The home page, the Work and Blog lists, and every project and post page share
-  one plain reading style:
-  wrap the page in `.personal-home` and import `src/styles/personal-home.css`.
-  It sets the warm color tokens, sans headings, and the 680px reading column.
-  Project and post pages use it too; `.prose` styles their Markdown body there.
-  So does the 404 page.
-  `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
+- Sky details: stars skip text, real constellations form around the cursor (data in
+  `src/scripts/constellations.ts`), and reduced motion gets a still frame.
+- Every page (home, Work and Blog lists, project and post pages, 404) imports
+  `src/styles/personal-home.css` and wraps its content in `.personal-home`;
+  `.prose` styles the Markdown body of projects and posts.
+- `<Header illustrated />` swaps the text nav for the drawn ship (Work) and book
   (Blog) in `src/components/NavigationArtwork.astro`. The wordmark reads
   "Enrichyouenergy" on every page.
 - The research page (`src/pages/research-and-coding.astro`, linked from the
   homepage's "ML and astrophysics") lists papers from the `papers` array at the
   top of the file. Add a paper there; `me` is bolded in the author line.
-- Sky details: stars skip text, real constellations form around the cursor (data in
-  `src/scripts/constellations.ts`), and hills with a telescope and laptop sit at the
-  bottom of the page. Reduced motion gets a still frame.
 - Projects are Markdown files in `src/content/projects/`, validated by the schema in
   `src/content.config.ts`; start from `docs/templates/project.md`. `draft` defaults
   to `true`, so set `draft: false` to publish. The projects list is a dated text list
   (year, category, title, summary), so new projects need no layout changes.
-
 - Blog posts are Markdown files in `src/content/posts/` (schema in
   `src/content.config.ts`); start from `docs/templates/post.md`. Each post has one
   `category`: `reflection`, `project-log`, or `concepts-explained` (display labels
   live in `src/lib/posts.ts`). `draft` defaults to `true`. `/blog/` is a dated text
   list, newest first, with the hills.
-
-## Deploying
-
-- After a push, the Actions run usually finishes within a couple of minutes.
-  GitHub's CDN caches pages for up to 10 minutes, so a change can appear late.
-
-## Open to-dos
-
-- Add a `www` CNAME (target `iknowitsimpossible.github.io`, DNS only) in Cloudflare.
-- Delete the unused Cloudflare Worker `personal-website` (a duplicate host).
-- Remove the `jinfanli.com` custom domain from OpenAI Sites without publishing.
