@@ -130,7 +130,7 @@ html:has(.personal-home) { background: #faf9f6; }
    (.prose) restyled from the old serif look to the homepage's sans. */
 .detail-intro { margin-bottom: 32px; }
 .personal-reading .detail-intro h1 { margin-bottom: 14px; }
-.personal-reading .detail-deck { font-size: 19px; line-height: 1.6; color: var(--muted); margin: 0; }
+.personal-reading .detail-deck { font-size: 19px; line-height: 1.6; font-style: italic; color: var(--muted); margin: 0; }
 .personal-reading .sample-notice {
   margin-top: 18px;
   padding-left: 14px;
