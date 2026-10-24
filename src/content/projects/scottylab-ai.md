@@ -5,7 +5,7 @@ cover:
   src: /images/projects/scottylabs-banner.svg
   alt: The ScottyLabs dog outline and wordmark in white on a purple, blue, and pink gradient.
   fit: cover
-summary: Connecting AI applications with campus data and services at Carnegie Mellon University.
+summary: Improving Bark’s memory retrieval, tool discovery, and streaming performance.
 category: AI Applications
 year: 2026
 role: ScottyLabs AI member · Agent team
@@ -20,6 +20,12 @@ theme: forest
 
 ## What the team does
 
-[ScottyLabs](https://scottylabs.org/) AI connects pre-trained ChatGPT with CMU campus data and services, including dining, locations, and transit. I’m part of the Agent team, whose tasks include **an MCP marketplace**, **an SMS integration proposal**, **more reliable tool loading and memory recall beyond keyword matching**, and **reducing delays in response streaming and moderation**.
+I’m part of the [ScottyLabs](https://scottylabs.org/) AI Agent team, working on Bark, an AI assistant for Carnegie Mellon students. My upcoming work focuses on:
+
+- Replacing keyword-based memory retrieval with context-aware retrieval.
+- Improving tool discovery beyond keyword-based loading.
+- Parallelizing input moderation with response generation.
+- Eliminating duplicate moderation checks.
+- Implementing incremental, non-blocking output safety checks to reduce streaming latency while preserving prompt-leak and secret protection.
 
 Through this work, I’m learning backend development, API integration, testing, and collaborative software development. It’s also helping me understand how AI agents select tools, recall context, and balance responsiveness with moderation.
