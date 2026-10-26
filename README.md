@@ -8,17 +8,6 @@ Personal website of me, a Carnegie Mellon University undergraduate. Built with A
 
 Requires Node.js 22.12 or later.
 
-```sh
-npm ci
-npm run dev
-```
-
-## Build
-
-```sh
-npm run build
-npm run preview
-```
 
 ## Content
 
