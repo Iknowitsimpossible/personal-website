@@ -1,5 +1,5 @@
 ---
-title: Building Agent Skills
+title: 'My very first Agent skill: README Organizer'
 summary: A hands-on guide to building Agent Skills, alongside a skill for clearer project READMEs.
 category: Developer Tools
 year: 2026
