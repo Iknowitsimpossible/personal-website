@@ -5,7 +5,7 @@ cover:
   src: /images/projects/scottylabs-banner.svg
   alt: The ScottyLabs dog outline and wordmark in white on a purple, blue, and pink gradient.
   fit: cover
-summary: Improving Bark’s memory retrieval, tool discovery, and streaming performance.
+summary: I improve Bark’s memory retrieval, tool discovery, and streaming performance.
 category: AI Applications
 year: 2026
 role: ScottyLabs AI member · Agent team

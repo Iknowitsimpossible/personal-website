@@ -4,7 +4,7 @@ cover:
   src: /images/projects/penalty-night-promo.webp
   alt: Playful Penalty Night illustration of a yellow-shirted soccer player shooting toward a diving teal-shirted goalkeeper in a floodlit lunar stadium, with Earth in the starry sky.
   fit: cover
-summary: A browser game that brings penalty shootouts to the Moon.
+summary: I made a browser game that brings penalty shootouts to the Moon.
 category: Browser Game
 year: 2026
 role: Developer

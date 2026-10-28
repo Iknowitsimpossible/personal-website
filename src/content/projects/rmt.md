@@ -5,7 +5,7 @@ cover:
   src: /images/projects/rmt-banner.svg
   alt: The Rate My Teacher wordmark in white on a navy, blue, and teal gradient.
   fit: cover
-summary: A teacher-review platform for BIPH students (my high school) to share about their opinions.
+summary: I built a teacher-review platform for students at my high school, BIPH, to share their opinions.
 category: Web Application
 year: 2025
 role: Project contributor
