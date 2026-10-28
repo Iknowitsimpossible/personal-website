@@ -1,6 +1,6 @@
 ---
 title: 'README Organizer'
-summary: A hands-on guide to building Agent Skills, alongside a skill for clearer project READMEs.
+summary: I created a hands-on guide to building Agent Skills and built a skill to help make project READMEs clearer.
 category: Developer Tools
 year: 2026
 role: Creator
@@ -14,16 +14,16 @@ theme: paper
 
 ## How to Build Skills
 
-A hands-on course in teaching AI coding agents to follow repeatable workflows. Eight short lessons cover planning a skill, writing clear instructions, adding scripts and references, testing behavior, and sharing the result.
+This is a hands-on course I created about teaching AI coding agents to follow repeatable workflows. In eight short lessons, I walk through planning a skill, writing clear instructions, adding scripts and references, testing behavior, and sharing the result.
 
-The repository includes three working examples, two starting templates, and a Python validator that separates structural errors from authoring suggestions. README Organizer serves as a case study of testing and improving a real skill.
+I included three working examples, two starting templates, and a Python validator that separates structural errors from suggestions for improving a skill. I use README Organizer as a case study to show how I test and improve a real skill.
 
 [Explore How to Build Skills on GitHub](https://github.com/Iknowitsimpossible/how-to-build-skills)
 
 ## README Organizer
 
-An Agent Skill that helps turn a finished repository into a project someone else can understand, install, and run. It adapts its README guidance to the project type and checks documented commands and local links against the code.
+I built README Organizer to help turn a finished repository into a project someone else can understand, install, and run. I designed it to adapt its README guidance to the project type and check documented commands and local links against the code.
 
-For an existing README, it proposes concrete edits in a separate suggestions file, keeping ready changes apart from missing assets and author decisions. A bundled Python checker flags issues such as nonexistent npm scripts, missing local files, and mismatched clone URLs.
+For an existing README, I have it propose concrete edits in a separate suggestions file, so changes that are ready to make stay separate from missing assets and decisions that need the author's input. I also included a Python checker to flag issues such as nonexistent npm scripts, missing local files, and mismatched clone URLs.
 
 [Explore README Organizer on GitHub](https://github.com/Iknowitsimpossible/readme-organizer)
