@@ -1,5 +1,5 @@
 ---
-title: RMT — Rate My Teacher
+title: Rate My Teacher
 coverTitle: RMT
 cover:
   src: /images/projects/rmt-banner.svg
