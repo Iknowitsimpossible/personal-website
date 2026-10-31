@@ -20,9 +20,10 @@ interface Props {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
+const isPlayableGame = project.id === 'penalty-night';
 ---
 
-<Base title={`${data.title} — Jeff Li`} description={data.summary} preloadImage={data.cover?.src}>
+<Base title={`${data.title} — Jeff Li`} description={data.summary} preloadImage={isPlayableGame ? undefined : data.cover?.src}>
   <div class="personal-home">
     <Header illustrated />
     <main id="main" class="personal-copy" data-project={project.id}>
@@ -40,7 +41,18 @@ const { data } = project;
             </p>
           )}
         </header>
-        {data.cover && (
+        {isPlayableGame && (
+          <div class="detail-cover detail-game">
+            <iframe
+              src="https://iknowitsimpossible.github.io/penalty-night/"
+              title="Play Penalty Night"
+              allow="fullscreen; autoplay; gamepad"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+        )}
+        {!isPlayableGame && data.cover && (
           <div class:list={['detail-cover', { 'detail-cover-contained': data.cover.fit === 'contain' }]}>
             <img src={data.cover.src} alt={data.cover.alt} width="1200" height="800" fetchpriority="high" />
           </div>

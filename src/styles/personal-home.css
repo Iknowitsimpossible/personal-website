@@ -149,6 +149,14 @@ html:has(.personal-home) { background: #faf9f6; }
   border: 1px solid var(--line);
 }
 .detail-cover img { width: 100%; height: auto; }
+.detail-game { background: #070b14; }
+.detail-game iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 420px;
+  border: 0;
+}
 /* Logos sit small and centered on white instead of filling the frame. */
 .detail-cover-contained { position: relative; aspect-ratio: 2 / 1; background: #fff; }
 .detail-cover-contained img {

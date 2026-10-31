@@ -18,22 +18,20 @@ const agentProject = (await getPublishedProjects()).find(({ id }) => id === 'sco
         <h1>Hi, I’m Jeff.</h1>
         <p>
           I’m an undergraduate at <em>Carnegie Mellon University</em>, studying{' '}
-          <strong><em>Statistics and Machine Learning</em></strong>, with minors in{' '}
-          <em>Artificial Intelligence</em> and <em>Philosophy</em>.
+          <strong><em>Statistics and Machine Learning</em></strong>. I am super interested in{' '}
+          <em>Artificial Intelligence</em>, <em>Philosophy</em>, and <em>Astrophysics</em>.
         </p>
         <p>
-          I enjoy building <a href="/projects/"><em>things</em></a>, researching cool problems in{' '}
-          <a href="/research-and-coding/"><em>ML and astrophysics</em></a>, and sharing a laugh along the way.
+          I enjoy building <a href="/projects/"><em>things</em></a> and researching cool problems in{' '}
+          <a href="/research-and-coding/"><em>ML and astrophysics</em></a>.
         </p>
         <section aria-labelledby="now-title">
           <h2 id="now-title">Right now</h2>
           {agentProject && (
             <p>
               I’m part of the Agent team at{' '}
-              <a href={`/projects/${agentProject.id}/`}><em>ScottyLabs AI</em></a>,
-              connecting AI applications with CMU campus data and services.
-              Along the way, I’m learning backend development, API integration,
-              and how to build real-life AI applications with a team.
+              <a href={`/projects/${agentProject.id}/`}><em>ScottyLabs AI</em></a>.
+              I’m learning backend development and how to build real-life AI applications.
             </p>
           )}
           <p>
@@ -53,7 +51,7 @@ const agentProject = (await getPublishedProjects()).find(({ id }) => id === 'sco
             or taking things slowly in <em>Stardew Valley</em>.
           </p>
           <p>
-            I also love <em>traveling</em>, partly because I’m a fan of <em>Laozi</em>!
+            I also love <em>traveling</em>.
           </p>
         </section>
         <div class="personal-contact">
