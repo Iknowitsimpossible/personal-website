@@ -7,7 +7,9 @@ import { getPublishedProjects } from '../lib/projects';
 import '../styles/personal-home.css';
 
 const latestPost = (await getPublishedPosts())[0];
-const agentProject = (await getPublishedProjects()).find(({ id }) => id === 'scottylab-ai');
+const projects = await getPublishedProjects();
+const selectedProjects = projects.filter(({ data }) => data.featured);
+const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
 ---
 
 <Base description="Jeff Li, a Statistics and Machine Learning undergraduate at Carnegie Mellon. A few things I’m working on, learning, and enjoying.">
@@ -41,6 +43,17 @@ const agentProject = (await getPublishedProjects()).find(({ id }) => id === 'sco
                 <a href={`/blog/${latestPost.id}/`}><em>{latestPost.data.title}</em></a>.
               </>
             )}
+          </p>
+        </section>
+        <section aria-labelledby="selected-title">
+          <h2 id="selected-title">Selected work</h2>
+          <p>
+            {selectedProjects.map(({ id, data }, index) => (
+              <>
+                {index > 0 && <br />}
+                <a href={`/projects/${id}/`}><em>{data.title}</em></a>
+              </>
+            ))}
           </p>
         </section>
         <section aria-labelledby="interests-title">
