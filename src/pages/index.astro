@@ -21,13 +21,13 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
           <div class="personal-intro-text">
             <h1>Hi, I’m Jeff.</h1>
             <p>
-              I’m an undergraduate at <em>Carnegie Mellon University</em>, studying{' '}
-              <strong><em>Statistics and Machine Learning</em></strong>. I am super interested in{' '}
-              <em>Artificial Intelligence</em>, <em>Philosophy</em>, and <em>Astrophysics</em>.
+              I’m an undergraduate at Carnegie Mellon University, studying{' '}
+              <strong>Statistics and Machine Learning</strong>. I am super interested in{' '}
+              Artificial Intelligence, Philosophy, and Astrophysics.
             </p>
             <p>
-              I enjoy building <a href="/projects/"><em>things</em></a> and researching cool problems in{' '}
-              <a href="/research-and-coding/"><em>ML and astrophysics</em></a>.
+              I enjoy building <a href="/projects/">things</a> and researching cool problems in{' '}
+              <a href="/research-and-coding/">ML and astrophysics</a>.
             </p>
           </div>
           <img
@@ -43,7 +43,7 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
           {agentProject && (
             <p>
               I’m part of the Agent team at{' '}
-              <a href={`/projects/${agentProject.id}/`}><em>ScottyLabs AI</em></a>.
+              <a href={`/projects/${agentProject.id}/`}>ScottyLabs AI</a>.
               I’m learning backend development and how to build real-life AI applications.
             </p>
           )}
@@ -51,7 +51,7 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
             I’m also writing down what I’m learning.
             {latestPost && (
               <>{' '}Most recently:{' '}
-                <a href={`/blog/${latestPost.id}/`}><em>{latestPost.data.title}</em></a>.
+                <a href={`/blog/${latestPost.id}/`}>{latestPost.data.title}</a>.
               </>
             )}
           </p>
@@ -62,7 +62,7 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
             {selectedProjects.map(({ id, data }, index) => (
               <>
                 {index > 0 && <br />}
-                <a href={`/projects/${id}/`}><em>{data.title}</em></a>
+                <a href={`/projects/${id}/`}>{data.title}</a>
               </>
             ))}
           </p>
@@ -71,11 +71,11 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
           <h2 id="interests-title">Away from the screen</h2>
           <p>
             You’ll find me playing soccer, wondering about the{' '}
-            <a href="https://digital-observatory.vercel.app/" target="_blank" rel="noopener noreferrer"><em>universe</em></a>,
+            <a href="https://digital-observatory.vercel.app/" target="_blank" rel="noopener noreferrer">universe</a>,
             or taking things slowly in <em>Stardew Valley</em>.
           </p>
           <p>
-            I also love <em>traveling</em>.
+            I also love traveling.
           </p>
         </section>
         <div class="personal-contact">
