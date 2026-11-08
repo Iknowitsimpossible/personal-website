@@ -33,7 +33,8 @@
   fallback tokens, which `.personal-home` overrides.
 - Fonts: DM Sans (`--sans`) for text, headings and the wordmark; weights 550-600 give
   headings their emphasis. The one exception is Chakra Petch (`--display`), used only
-  for the Work and Blog labels in `src/components/NavigationArtwork.astro`.
+  for the Work and Blog labels in `src/components/NavigationArtwork.astro` and the
+  homepage's section headings (`.home-sections`).
 - Layout: a centered 820px column (28px side padding, 24px on phones) holds the header
   and content, and text sits in a 680px reading column (`.personal-reading`), so the
   header and content line up across pages.

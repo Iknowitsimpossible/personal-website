@@ -16,7 +16,7 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
   <div class="personal-home">
     <Header illustrated />
     <main id="main" class="personal-copy">
-      <div class="personal-reading">
+      <div class="personal-reading home-sections">
         <div class="personal-intro">
           <div class="personal-intro-text">
             <h1>Hi, I’m Jeff.</h1>
@@ -30,13 +30,15 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
               <a href="/research-and-coding/">ML and astrophysics</a>.
             </p>
           </div>
-          <img
-            class="personal-portrait"
-            src="/images/jeff-portrait.jpg"
-            width="480"
-            height="720"
-            alt="Jeff wearing a plush red Mario hat on top of a baseball cap"
-          />
+          <div class="portrait-frame">
+            <img
+              class="personal-portrait"
+              src="/images/jeff-portrait.jpg"
+              width="480"
+              height="720"
+              alt="Jeff wearing a plush red Mario hat on top of a baseball cap"
+            />
+          </div>
         </div>
         <section aria-labelledby="now-title">
           <h2 id="now-title">Right now</h2>
