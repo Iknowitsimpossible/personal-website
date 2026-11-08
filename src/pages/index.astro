@@ -8,7 +8,6 @@ import '../styles/personal-home.css';
 
 const latestPost = (await getPublishedPosts())[0];
 const projects = await getPublishedProjects();
-const selectedProjects = projects.filter(({ data }) => data.featured);
 const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
 ---
 
@@ -56,17 +55,6 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
                 <a href={`/blog/${latestPost.id}/`}>{latestPost.data.title}</a>.
               </>
             )}
-          </p>
-        </section>
-        <section aria-labelledby="selected-title">
-          <h2 id="selected-title">Selected work</h2>
-          <p>
-            {selectedProjects.map(({ id, data }, index) => (
-              <>
-                {index > 0 && <br />}
-                <a href={`/projects/${id}/`}>{data.title}</a>
-              </>
-            ))}
           </p>
         </section>
         <section aria-labelledby="interests-title">
