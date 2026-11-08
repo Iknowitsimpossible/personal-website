@@ -17,16 +17,27 @@ const agentProject = projects.find(({ id }) => id === 'scottylab-ai');
     <Header illustrated />
     <main id="main" class="personal-copy">
       <div class="personal-reading">
-        <h1>Hi, I’m Jeff.</h1>
-        <p>
-          I’m an undergraduate at <em>Carnegie Mellon University</em>, studying{' '}
-          <strong><em>Statistics and Machine Learning</em></strong>. I am super interested in{' '}
-          <em>Artificial Intelligence</em>, <em>Philosophy</em>, and <em>Astrophysics</em>.
-        </p>
-        <p>
-          I enjoy building <a href="/projects/"><em>things</em></a> and researching cool problems in{' '}
-          <a href="/research-and-coding/"><em>ML and astrophysics</em></a>.
-        </p>
+        <div class="personal-intro">
+          <div class="personal-intro-text">
+            <h1>Hi, I’m Jeff.</h1>
+            <p>
+              I’m an undergraduate at <em>Carnegie Mellon University</em>, studying{' '}
+              <strong><em>Statistics and Machine Learning</em></strong>. I am super interested in{' '}
+              <em>Artificial Intelligence</em>, <em>Philosophy</em>, and <em>Astrophysics</em>.
+            </p>
+            <p>
+              I enjoy building <a href="/projects/"><em>things</em></a> and researching cool problems in{' '}
+              <a href="/research-and-coding/"><em>ML and astrophysics</em></a>.
+            </p>
+          </div>
+          <img
+            class="personal-portrait"
+            src="/images/jeff-portrait.jpg"
+            width="480"
+            height="720"
+            alt="Jeff wearing a plush red Mario hat on top of a baseball cap"
+          />
+        </div>
         <section aria-labelledby="now-title">
           <h2 id="now-title">Right now</h2>
           {agentProject && (
