@@ -31,7 +31,7 @@
   `src/styles/global.css` holds only the shared base: element resets, header,
   Markdown `.prose`, social icons and the night sky. Its `:root` still has older blue
   fallback tokens, which `.personal-home` overrides.
-- Fonts: DM Sans (`--sans`) for text, headings and the wordmark; weights 550-600 give
+- Fonts: Space Grotesk (`--sans`, loaded from Google Fonts in `global.css`) for text, headings and the wordmark; weights 550-600 give
   headings their emphasis. The one exception is Chakra Petch (`--display`), used only
   for the Work and Blog labels in `src/components/NavigationArtwork.astro` and the
   homepage's section headings (`.home-sections`).
